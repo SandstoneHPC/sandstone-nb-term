@@ -1,0 +1,9 @@
+{
+  "name": "OIDE - NBTerm",
+  "description": "Online Integrated Development Environment Extension - Notebook Terminal",
+  "homepage": "https://github.com/ResearchComputing/OIDE.git",
+  "license": "AGPLv3",
+  "private": true,
+  "dependencies": {
+  }
+}
