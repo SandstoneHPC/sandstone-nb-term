@@ -1,0 +1,50 @@
+/*
+ * Main content
+ */
+
+.main {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+.main .page-header {
+  margin-top: 0;
+}
+
+.viewpane {
+  width: 100%;
+  height: 88vh;
+  border-left: 1px solid #dfd7ca;
+  border-right: 1px solid #dfd7ca;
+  border-bottom: 1px solid #dfd7ca;
+}
+
+/*
+ * Terminal styles
+ */
+
+#terminal-pane {
+  position: absolute;
+  top: 37px;
+  left: 17px;
+  right: 17px;
+  height: 87vh;
+}
+
+.terminal {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  color: black !important;
+  background-color: white !important;
+  border: none !important;
+}
+
+.terminal-cursor {
+  color: #93c54b;
+  background-color: #93c54b;
+}

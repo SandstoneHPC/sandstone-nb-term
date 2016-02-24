@@ -1,3 +1,12 @@
-<div class="row fill">
-  
+<div class="row main fill">
+  <div class="col-md-12 fill">
+    <tabset justified="true">
+      <tab heading="Terminal">
+        <div class="viewpane" ui-view="terminal"></div>
+      </tab>
+      <tab heading="BASH Notebook">
+        <div class="viewpane" ui-view="notebook"></div>
+      </tab>
+    </tabset>
+  </div>
 </div>
