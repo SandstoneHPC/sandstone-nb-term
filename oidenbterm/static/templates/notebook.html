@@ -1,7 +1,7 @@
 <div class="panel nb-panel nb-panel-selected">
   <div class="row">
     <div class="col-md-1 col-sm-2">
-      <h5 class="text-right">In [1]:</h5>
+      <h5 class="text-right nb-in-label">In [1]:</h5>
     </div>
     <div class="col-md-11 col-sm-10">
       <div class="ace-cell" ui-ace="{
@@ -15,7 +15,7 @@
 import os</div>
     </div>
     <div class="col-md-1 col-sm-2">
-      <h5 class="text-right">Out [1]:</h5>
+      <h5 class="text-right nb-out-label">Out [1]:</h5>
     </div>
     <div class="col-md-11 col-sm-10">
       <pre class="nb-output">Here comes a lot of output:
@@ -47,35 +47,44 @@ import os</div>
       </pre>
     </div>
     <div class="col-md-12 col-sm-12">
-      <div class="btn-group btn-group-sm pull-right" role="group">
-        <button type="button" class="btn btn-default">
-          <i class="fa fa-forward"></i>
-        </button>
-        <button type="button" class="btn btn-default">
-          <i class="fa fa-play"></i>
-        </button>
-
-        <div class="btn-group btn-group-sm" dropdown>
-          <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
-            More
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href>Insert Cell Above</a></li>
-            <li><a href>Insert Cell Below</a></li>
-            <li><a href>Convert to Markdown</a></li>
-            <li><a href>Delete Cell</a></li>
-          </ul>
+      <form class="form-inline pull-right">
+        <div class="form-group">
+          <select class="form-control input-sm">
+            <option>Code</option>
+            <option>Markdown</option>
+            <option>Heading</option>
+          </select>
         </div>
-      </div>
-    </div>
+        <div class="btn-group btn-group-sm" role="group">
+          <button type="button" class="btn btn-default">
+            <i class="fa fa-forward"></i>
+          </button>
+          <button type="button" class="btn btn-default">
+            <i class="fa fa-play"></i>
+          </button>
+
+          <div class="btn-group btn-group-sm" dropdown>
+            <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
+              More
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href>Insert Cell Above</a></li>
+              <li><a href>Insert Cell Below</a></li>
+              <li><a href>Convert to Markdown</a></li>
+              <li><a href>Delete Cell</a></li>
+            </ul>
+          </div>
+        </div>
+      </form>
+  </div>
   </div>
 </div>
 
 <div class="panel nb-panel">
   <div class="row">
     <div class="col-md-1 col-sm-2">
-      <h5 class="text-right">In [2]:</h5>
+      <h5 class="text-right nb-in-label">In [2]:</h5>
     </div>
     <div class="col-md-11 col-sm-10">
       <div class="ace-cell" ui-ace="{
@@ -88,7 +97,7 @@ import os</div>
       }">print "Hi!!"</div>
     </div>
     <div class="col-md-1 col-sm-2">
-      <h5 class="text-right">Out [2]:</h5>
+      <h5 class="text-right nb-out-label">Out [2]:</h5>
     </div>
     <div class="col-md-11 col-sm-10">
       <pre class="nb-output">Hi!!</pre>
@@ -99,7 +108,7 @@ import os</div>
 <div class="panel nb-panel">
   <div class="row">
     <div class="col-md-1 col-sm-2">
-      <h5 class="text-right">In [3]:</h5>
+      <h5 class="text-right nb-in-label">In [3]:</h5>
     </div>
     <div class="col-md-11 col-sm-10">
       <div class="ace-cell" ui-ace="{
@@ -112,7 +121,7 @@ import os</div>
       }">print "Goodbye!!"</div>
     </div>
     <div class="col-md-1 col-sm-2">
-      <h5 class="text-right">Out [3]:</h5>
+      <h5 class="text-right nb-out-label">Out [3]:</h5>
     </div>
     <div class="col-md-11 col-sm-10">
       <pre class="nb-output">Goodbye!!</pre>
