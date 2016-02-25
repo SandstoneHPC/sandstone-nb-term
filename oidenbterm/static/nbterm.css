@@ -18,9 +18,6 @@
 .viewpane {
   width: 100%;
   padding: 10px;
-  /*border-left: 1px solid #dfd7ca;
-  border-right: 1px solid #dfd7ca;
-  border-bottom: 1px solid #dfd7ca;*/
 }
 
 #nbterm-main .nav-pills > li.active > a {
@@ -71,9 +68,22 @@
   border: none;
 }
 
+.nb-panel.nb-control-panel {
+  border-radius: 0px;
+  border-bottom: .5px solid #eeeeee;
+  padding: 0px;
+  margin-bottom: 25px;
+}
+
+.nb-control-panel .nb-actions {
+  list-style: none;
+}
+
 .nb-out-label {
   color: #888888;
 }
+
+.nb-panel.nb-panel-executed {}
 
 .nb-panel.nb-panel-selected {
   border-left: 3px solid #93c54b;
@@ -84,9 +94,15 @@
 
 .nb-panel .ace-cell {
   border: 1px solid #cccccc;
+  border-radius: 3px;
+}
+
+.nb-panel.nb-panel-executed .ace-cell {
   border-bottom-color: transparent;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 .nb-panel .ace_editor {

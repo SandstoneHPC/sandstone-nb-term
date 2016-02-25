@@ -1,4 +1,4 @@
-<div class="panel nb-panel nb-panel-selected">
+<div class="panel nb-panel nb-panel-executed nb-panel-selected">
   <div class="row">
     <div class="col-md-1 col-sm-2">
       <h5 class="text-right nb-in-label">In [1]:</h5>
@@ -48,13 +48,6 @@ import os</div>
     </div>
     <div class="col-md-12 col-sm-12">
       <form class="form-inline pull-right">
-        <div class="form-group">
-          <select class="form-control input-sm">
-            <option>Code</option>
-            <option>Markdown</option>
-            <option>Heading</option>
-          </select>
-        </div>
         <div class="btn-group btn-group-sm" role="group">
           <button type="button" class="btn btn-default">
             <i class="fa fa-forward"></i>
@@ -76,12 +69,19 @@ import os</div>
             </ul>
           </div>
         </div>
+        <div class="form-group">
+          <select class="form-control input-sm">
+            <option>Code</option>
+            <option>Markdown</option>
+            <option>Heading</option>
+          </select>
+        </div>
       </form>
   </div>
   </div>
 </div>
 
-<div class="panel nb-panel">
+<div class="panel nb-panel nb-panel-executed">
   <div class="row">
     <div class="col-md-1 col-sm-2">
       <h5 class="text-right nb-in-label">In [2]:</h5>
@@ -105,6 +105,15 @@ import os</div>
   </div>
 </div>
 
+<div class="panel nb-panel nb-panel-executed nb-panel-markdown">
+  <div class="row">
+    <div class="col-md-11 col-md-offset-1 col-sm-10 col-sm-offset-2">
+      <h3>This is a markdown cell.</h3>
+      <p>This cell becomes editable when double-clicked.</p>
+    </div>
+  </div>
+</div>
+
 <div class="panel nb-panel">
   <div class="row">
     <div class="col-md-1 col-sm-2">
@@ -119,12 +128,6 @@ import os</div>
           showGutter: false
         }
       }">print "Goodbye!!"</div>
-    </div>
-    <div class="col-md-1 col-sm-2">
-      <h5 class="text-right nb-out-label">Out [3]:</h5>
-    </div>
-    <div class="col-md-11 col-sm-10">
-      <pre class="nb-output">Goodbye!!</pre>
     </div>
   </div>
 </div>
