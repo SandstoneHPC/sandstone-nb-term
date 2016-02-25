@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('oide.nbterm', [])
+angular.module('oide.nbterm', ['ui.ace'])
 
 .config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider) {
   $stateProvider
@@ -14,7 +14,7 @@ angular.module('oide.nbterm', [])
           templateUrl: '/static/nbterm/templates/terminal.html',
           controller: 'TerminalCtrl as ctrl'
         },
-        'notebook@editor': {
+        'notebook@nbterm': {
           templateUrl: '/static/nbterm/templates/notebook.html',
           controller: 'NotebookCtrl as ctrl'
         }

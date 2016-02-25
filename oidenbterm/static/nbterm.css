@@ -17,10 +17,18 @@
 
 .viewpane {
   width: 100%;
-  height: 88vh;
-  border-left: 1px solid #dfd7ca;
+  padding: 10px;
+  /*border-left: 1px solid #dfd7ca;
   border-right: 1px solid #dfd7ca;
-  border-bottom: 1px solid #dfd7ca;
+  border-bottom: 1px solid #dfd7ca;*/
+}
+.viewpane.terminal-view {
+  height: 88vh;
+}
+
+.viewpane.notebook-view {
+  height: 88vh;
+  overflow-y: auto;
 }
 
 /*
@@ -28,16 +36,13 @@
  */
 
 #terminal-pane {
-  position: absolute;
-  top: 37px;
-  left: 17px;
-  right: 17px;
-  height: 87vh;
+  padding: 5px;
+  height: 100%;
 }
 
 .terminal {
   width: 100%;
-  height: 100%;
+  height: 90%;
   padding: 10px;
   color: black !important;
   background-color: white !important;
@@ -47,4 +52,42 @@
 .terminal-cursor {
   color: #93c54b;
   background-color: #93c54b;
+}
+
+/*
+ * Notebook Styles
+ */
+.nb-panel {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: none;
+}
+
+.nb-panel.nb-panel-selected {
+  border-left: 3px solid #93c54b;
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+}
+
+.nb-panel .ace-cell {
+  border: 1px solid #cccccc;
+  border-bottom-color: transparent;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.nb-panel .ace_editor {
+  min-height: 100px;
+}
+.nb-panel .ace-scroller {
+  margin: 5px;
+}
+
+.nb-output {
+  max-height: 200px;
+  overflow-y: auto;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }

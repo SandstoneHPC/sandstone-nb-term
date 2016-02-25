@@ -47,8 +47,8 @@ angular.module('oide.nbterm')
   function calculate_size() {
     var h = document.documentElement.clientHeight;
     var w = document.documentElement.clientWidth;
-    var rows = Math.max(2, Math.floor((h-134)/15)-1);
-    var cols = Math.max(3, Math.floor((w-61)/7)-1);
+    var rows = Math.max(2, Math.floor((h-164)/15)-1);
+    var cols = Math.max(3, Math.floor((w-80)/7)-1);
     return {rows: rows, cols: cols};
   }
   var size = calculate_size();
