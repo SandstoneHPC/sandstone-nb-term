@@ -71,12 +71,20 @@
 .nb-panel.nb-control-panel {
   border-radius: 0px;
   border-bottom: .5px solid #eeeeee;
-  padding: 0px;
   margin-bottom: 25px;
 }
 
 .nb-control-panel .nb-actions {
-  list-style: none;
+  margin-bottom: -5px;
+}
+
+.nb-actions > .nb-action {
+  /*margin-left: 10px;
+  margin-right: 10px;*/
+}
+
+.nb-action.fa-stop {
+  color: #d9534f;
 }
 
 .nb-out-label {
