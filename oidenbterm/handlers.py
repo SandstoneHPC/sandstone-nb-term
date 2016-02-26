@@ -16,8 +16,10 @@ class AuthTermSocket(TermSocket,BaseHandler):
         return super(AuthTermSocket, self).get(*args, **kwargs)
 
 class KernelHandler(BaseHandler, KernelMixin):
+    @oide.lib.decorators.authenticated
     def post(self):
-        code = self.get_argument("code")
+        # print self.request.body
+        code = json.loads(self.request.body)["code"]
         msg_id = self.kernel.execute(code)
         # print(msg_id)
         res = []

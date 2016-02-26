@@ -9,9 +9,11 @@ angular.module('oide.nbterm')
     $http({
       url: '/nbterm/a/kernel/execute',
       method: 'POST',
-      params: {
-        _xsrf:getCookie('_xsrf'),
+      data: {
         code: "print 'Hello, World'"
+      },
+      params: {
+        _xsrf:getCookie('_xsrf')
       }
     }).success(function(data){
       console.log(data);
