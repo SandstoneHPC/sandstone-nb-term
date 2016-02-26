@@ -93,7 +93,7 @@
 
 .nb-panel.nb-panel-executed {}
 
-.nb-panel.nb-panel-selected {
+.nb-panel.nb-panel-active {
   border-left: 3px solid #93c54b;
   border-top: 1px solid #dddddd;
   border-bottom: 1px solid #dddddd;
@@ -103,6 +103,7 @@
 .nb-panel .ace-cell {
   border: 1px solid #cccccc;
   border-radius: 3px;
+  margin-bottom: 10px;
 }
 
 .nb-panel.nb-panel-executed .ace-cell {
@@ -111,6 +112,7 @@
   border-top-right-radius: 3px;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
+  margin-bottom: 0px;
 }
 
 .nb-panel .ace_editor {
@@ -121,6 +123,7 @@
 }
 
 .nb-output {
+  min-height: 50px;
   max-height: 200px;
   overflow-y: auto;
   border-top-left-radius: 0px;

@@ -34,153 +34,16 @@
         </button>
       </div>
     </div>
-    <!-- <p class="pull-right nb-actions">
-      <i class="fa fa-2x fa-file-text-o nb-action"></i>
-      <i class="fa fa-2x fa-folder-open-o nb-action"></i>
-      <i class="fa fa-2x fa-floppy-o nb-action"></i>
-      <i class="fa fa-2x fa-stop nb-action"></i>
-    </p> -->
   </div>
 </div>
 
-<div class="panel nb-panel nb-panel-executed nb-panel-selected">
-  <div class="row">
-    <div class="col-md-1 col-sm-2">
-      <h5 class="text-right nb-in-label">In [1]:</h5>
-    </div>
-    <div class="col-md-11 col-sm-10">
-      <div class="ace-cell" ui-ace="{
-        mode: 'python',
-        rendererOptions: {
-          fontSize: '12pt',
-          maxLines: Infinity,
-          showGutter: false
-        }
-      }">import sys
-import os</div>
-    </div>
-    <div class="col-md-1 col-sm-2">
-      <h5 class="text-right nb-out-label">Out [1]:</h5>
-    </div>
-    <div class="col-md-11 col-sm-10">
-      <pre class="nb-output">Here comes a lot of output:
-        This is a lot of output!
-        This is a lot of output!
-        This is a lot of output!
-        This is a lot of output!
-        This is a lot of output!
-        This is a lot of output!
-        This is a lot of output!
-        This is a lot of output!
-        This is a lot of output!
-        This is a lot of output!
-        This is a lot of output!
-        This is a lot of output!
-        This is a lot of output!
-        This is a lot of output!
-        This is a lot of output!
-        This is a lot of output!
-        This is a lot of output!
-        This is a lot of output!
-        This is a lot of output!
-        This is a lot of output!
-        This is a lot of output!
-        This is a lot of output!
-        This is a lot of output!
-        This is a lot of output!
-        This is a lot of output!
-      </pre>
-    </div>
-    <div class="col-md-12 col-sm-12">
-      <form class="form-inline pull-right">
-        <div class="btn-group btn-group-sm" role="group">
-          <button
-            type="button"
-            class="btn btn-default"
-            tooltip-placement="top"
-            tooltip="Run All Cells Above">
-            <i class="fa fa-forward"></i>
-          </button>
-          <button
-            type="button"
-            class="btn btn-default"
-            tooltip-placement="top"
-            tooltip="Run Cell">
-            <i class="fa fa-play"></i>
-          </button>
-
-          <div class="btn-group btn-group-sm" dropdown>
-            <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
-              More
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href>Insert Cell Above</a></li>
-              <li><a href>Insert Cell Below</a></li>
-              <li><a href>Convert to Markdown</a></li>
-              <li><a href>Delete Cell</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="form-group">
-          <select class="form-control input-sm">
-            <option>Code</option>
-            <option>Markdown</option>
-            <option>Heading</option>
-          </select>
-        </div>
-      </form>
-  </div>
-  </div>
-</div>
-
-<div class="panel nb-panel nb-panel-executed">
-  <div class="row">
-    <div class="col-md-1 col-sm-2">
-      <h5 class="text-right nb-in-label">In [2]:</h5>
-    </div>
-    <div class="col-md-11 col-sm-10">
-      <div class="ace-cell" ui-ace="{
-        mode: 'python',
-        rendererOptions: {
-          fontSize: '12pt',
-          maxLines: Infinity,
-          showGutter: false
-        }
-      }">print "Hi!!"</div>
-    </div>
-    <div class="col-md-1 col-sm-2">
-      <h5 class="text-right nb-out-label">Out [2]:</h5>
-    </div>
-    <div class="col-md-11 col-sm-10">
-      <pre class="nb-output">Hi!!</pre>
-    </div>
-  </div>
-</div>
+<div nb-notebook kernel-name="python" cells="ctrl.cells"></div>
 
 <div class="panel nb-panel nb-panel-executed nb-panel-markdown">
   <div class="row">
     <div class="col-md-11 col-md-offset-1 col-sm-10 col-sm-offset-2">
       <h3>This is a markdown cell.</h3>
       <p>This cell becomes editable when double-clicked.</p>
-    </div>
-  </div>
-</div>
-
-<div class="panel nb-panel">
-  <div class="row">
-    <div class="col-md-1 col-sm-2">
-      <h5 class="text-right nb-in-label">In [3]:</h5>
-    </div>
-    <div class="col-md-11 col-sm-10">
-      <div class="ace-cell" ui-ace="{
-        mode: 'python',
-        rendererOptions: {
-          fontSize: '12pt',
-          maxLines: Infinity,
-          showGutter: false
-        }
-      }">print "Goodbye!!"</div>
     </div>
   </div>
 </div>

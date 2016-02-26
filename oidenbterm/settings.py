@@ -14,6 +14,7 @@ APP_SPECIFICATION = {
     ),
     'NG_MODULE_SCRIPTS': (
         'nbterm.js',
+        'nbnotebook.directive.js',
         'terminal.controller.js',
         'notebook.controller.js'
     ),
