@@ -10,7 +10,8 @@ angular.module('oide.nbterm')
       url: '/nbterm/a/kernel/execute',
       method: 'POST',
       data: {
-        code: "print 'Hello, World'"
+        code: "print 'Hello, World'",
+        operation: 'EXECUTE_CODE'
       },
       params: {
         _xsrf:getCookie('_xsrf')
@@ -18,7 +19,22 @@ angular.module('oide.nbterm')
     }).success(function(data){
       console.log(data);
     });
-  }
+  };
+
+  self.shutdownKernel = function() {
+    $http({
+      url: '/nbterm/a/kernel/execute',
+      method: 'POST',
+      data: {
+        operation: 'SHUTDOWN_KERNEL'
+      },
+      params: {
+        _xsrf:getCookie('_xsrf')
+      }
+    }).success(function(data){
+      console.log(data);
+    });  
+  };
 
 
 }]);
