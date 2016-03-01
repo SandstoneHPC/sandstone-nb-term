@@ -1,0 +1,6 @@
+<div class="nb-container">
+  <div
+    ng-repeat="cell in cells track by $index"
+    ng-include="'/static/nbterm/templates/nb-cell-' + cell.type + '.html'">
+  </div>
+</div>
