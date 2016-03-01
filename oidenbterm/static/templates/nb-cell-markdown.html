@@ -1,33 +1,31 @@
 <div
   class="panel nb-panel nb-panel-markdown"
-  ng-class="{'nb-panel-executed':cell.hasExecuted,'nb-panel-active':cell.isActive}">
+  ng-class="{'nb-panel-executed':cell.hasExecuted,'nb-panel-active':cell.isActive}"
+  ng-init="editing=false">
   <div class="row">
-    <div class="col-md-1 col-sm-2">
-      <h5 class="text-right nb-in-label">In [{{$index}}]:</h5>
-    </div>
-    <div class="col-md-11 col-sm-10">
-      <div class="ace-cell" ui-ace="{
-        mode: 'markdown',
-        rendererOptions: {
-          fontSize: '12pt',
-          maxLines: Infinity,
-          showGutter: false
-        }
-      }"></div>
-    </div>
     <div
       class="col-md-1 col-sm-2"
-      ng-show="cell.hasExecuted">
-      <h5 class="text-right nb-out-label">Out [{{$index}}]:</h5>
+      ng-hide="cell.hasExecuted&&!editing">
+      <h5 class="text-right nb-in-label">In [{{$index}}]:</h5>
     </div>
     <div
       class="col-md-11 col-sm-10"
-      ng-show="cell.hasExecuted">
-      <pre class="nb-output"></pre>
+      ng-hide="cell.hasExecuted&&!editing">
+      <div
+        class="ace-cell"
+        ui-ace="{
+          mode: 'markdown',
+          rendererOptions: {
+            fontSize: '12pt',
+            maxLines: Infinity,
+            showGutter: false
+          }
+        }"
+        ng-model="cell.input"></div>
     </div>
     <div
       class="col-md-12 col-sm-12"
-      ng-show="cell.isActive">
+      ng-show="cell.isActive&&editing">
       <form class="form-inline pull-right">
         <div class="btn-group btn-group-sm" role="group">
           <button
@@ -64,6 +62,23 @@
           </select>
         </div>
       </form>
+    </div>
+    <div class="col-md-12 col-sm-12" ng-show="cell.hasExecuted&&!editing">
+      <div
+        class="nb-output nb-output-markdown"
+        marked="cell.input">
+      </div>
+    </div>
+    <div
+      class="col-md-12 col-sm-12"
+      ng-show="cell.isActive&&!editing">
+      <span
+        class="pull-right"
+        tooltip-placement="left"
+        tooltip="Edit Cell"
+        ng-click="editing=!editing">
+        <i class="fa fa-pencil"></i>
+      </span>
     </div>
   </div>
 </div>

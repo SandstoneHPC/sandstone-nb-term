@@ -115,6 +115,12 @@
   margin-bottom: 0px;
 }
 
+.nb-panel.nb-panel-markdown .ace-cell {
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
 .nb-panel .ace_editor {
   min-height: 100px;
 }
@@ -128,4 +134,9 @@
   overflow-y: auto;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
+}
+
+.nb-output-markdown {
+  max-height: none;
+  margin: 20px;
 }
