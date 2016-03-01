@@ -32,7 +32,7 @@
     <div
       class="col-md-12 col-sm-12"
       ng-show="cell.isActive">
-      <form class="form-inline pull-right">
+      <form class="form-inline pull-right" ng-click="$event.stopPropagation()">
         <div class="btn-group btn-group-sm" role="group">
           <button
             type="button"

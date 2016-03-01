@@ -28,24 +28,38 @@ angular.module('oide.nbterm')
         $scope.cells.splice(index,1);
       };
       $scope.insertCellAbove = function(cell) {
-        var index = $scope.cells.indexOf(cell);
         var newCell = createNewCell('code');
-        $scope.cells.splice(index-1, 0 , newCell);
+        var index = $scope.cells.indexOf(cell);
+        $scope.cells.splice(index-1, 0, newCell);
         $scope.setActive(newCell);
       };
       $scope.insertCellBelow = function(cell) {
-        var index = $scope.cells.indexOf(cell);
         var newCell = createNewCell('code');
-        $scope.cells.splice(index+1, 0 , newCell);
+        var index = $scope.cells.indexOf(cell);
+        $scope.cells.splice(index+1, 0, newCell);
         $scope.setActive(newCell);
       };
       $scope.runCell = function(cell) {
-        $scope.kernelStatus = 'busy';
-        // Eventually, the nb service will set the output
-        // on the model, and then revert its status to 'idle'.
-        $scope.kernelStatus = 'idle';
-        cell.hasExecuted = true;
-        cell.output = 'This code ran!';
+        if (cell.type === 'markdown') {
+          cell.editing = false;
+          cell.hasExecuted = true;
+        } else {
+          $scope.kernelStatus = 'busy';
+          // Eventually, the nb service will set the output
+          // on the model, and then revert its status to 'idle'.
+          $scope.kernelStatus = 'idle';
+          cell.hasExecuted = true;
+          cell.output = 'This code ran!';
+        }
+        // Post-Run
+        var index = $scope.cells.indexOf(cell);
+        if (index === $scope.cells.length-1) {
+          // Insert new cell at end of notebook
+          $scope.insertCellBelow(cell);
+        } else {
+          // Set the next cell as active
+          $scope.setActive($scope.cells[index+1]);
+        }
       };
       var createNewCell = function(cellType) {
         return {
