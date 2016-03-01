@@ -1,7 +1,8 @@
 <div
   class="panel nb-panel"
-  ng-class="{'nb-panel-executed':cell.hasExecuted,'nb-panel-active':cell.isActive}"
-  ng-click="setActive(cell)">
+  ng-class="{'nb-panel-executed':cell.showOutput,'nb-panel-active':cell.isActive}"
+  ng-click="setActive(cell)"
+  ng-init="cell.showOutput=false">
   <div class="row">
     <div class="col-md-1 col-sm-2 hidden-xs">
       <h5 class="text-right nb-in-label">In [{{$index}}]:</h5>
@@ -21,12 +22,16 @@
     </div>
     <div
       class="col-md-1 col-sm-2"
-      ng-show="cell.hasExecuted">
-      <h5 class="text-right nb-out-label">Out [{{$index}}]:</h5>
+      ng-show="cell.showOutput">
+      <h5 class="text-right nb-out-label">
+        <i
+          class="fa fa-spinner fa-spin"
+          ng-show="kernelStatus=='busy'&&!cell.hasExecuted"></i>
+        Out [{{$index}}]:</h5>
     </div>
     <div
       class="col-md-11 col-sm-10"
-      ng-show="cell.hasExecuted">
+      ng-show="cell.showOutput">
       <pre class="nb-output" ng-bind="cell.output"></pre>
     </div>
     <div
@@ -38,7 +43,8 @@
             type="button"
             class="btn btn-default"
             tooltip-placement="top"
-            tooltip="Run All Cells Above">
+            tooltip="Run All Cells Above"
+            ng-click="runAllCellsAbove(cell)">
             <i class="fa fa-forward"></i>
           </button>
           <button
@@ -46,7 +52,7 @@
             class="btn btn-default"
             tooltip-placement="top"
             tooltip="Run Cell"
-            ng-click="runCell(cell)">
+            ng-click="cell.showOutput=true;runCell(cell)">
             <i class="fa fa-play"></i>
           </button>
           <div class="btn-group btn-group-sm" dropdown>

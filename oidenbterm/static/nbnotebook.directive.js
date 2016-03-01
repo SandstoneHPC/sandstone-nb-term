@@ -11,7 +11,7 @@ angular.module('oide.nbterm')
       kernelStatus: '='
     },
     templateUrl: '/static/nbterm/templates/nb-notebook.html',
-    controller: function($scope,$element) {
+    controller: function($scope,$element,$timeout) {
       $scope.cellTypes = [
         {id:'markdown',name:'Markdown'},
         {id:'code',name:'Code'},
@@ -39,17 +39,27 @@ angular.module('oide.nbterm')
         $scope.cells.splice(index+1, 0, newCell);
         $scope.setActive(newCell);
       };
+      $scope.runAllCellsAbove = function(cell) {
+        var index = $scope.cells.indexOf(cell);
+        for (var i=0;i<index;i++) {
+          $scope.runCell($scope.cells[i]);
+        }
+      };
       $scope.runCell = function(cell) {
         if (cell.type === 'markdown') {
-          cell.editing = false;
+          cell.showOutput = false;
           cell.hasExecuted = true;
         } else {
+          cell.hasExecuted = false;
+          cell.showOutput = true;
           $scope.kernelStatus = 'busy';
           // Eventually, the nb service will set the output
           // on the model, and then revert its status to 'idle'.
-          $scope.kernelStatus = 'idle';
-          cell.hasExecuted = true;
-          cell.output = 'This code ran!';
+          $timeout(function() {
+            $scope.kernelStatus = 'idle';
+            cell.hasExecuted = true;
+            cell.output = 'This code ran!';
+          }, 1000);
         }
         // Post-Run
         var index = $scope.cells.indexOf(cell);

@@ -1,17 +1,17 @@
 <div
   class="panel nb-panel nb-panel-markdown"
-  ng-class="{'nb-panel-executed':cell.hasExecuted,'nb-panel-active':cell.isActive}"
+  ng-class="{'nb-panel-executed':cell.showOutput,'nb-panel-active':cell.isActive}"
   ng-click="setActive(cell)"
-  ng-init="cell.editing=true">
+  ng-init="cell.showOutput=true">
   <div class="row">
     <div
       class="col-md-1 col-sm-2 hidden-xs"
-      ng-hide="cell.hasExecuted&&!cell.editing">
+      ng-hide="cell.hasExecuted&&!cell.showOutput">
       <h5 class="text-right nb-in-label">In [{{$index}}]:</h5>
     </div>
     <div
       class="col-md-11 col-sm-10"
-      ng-hide="cell.hasExecuted&&!cell.editing">
+      ng-hide="cell.hasExecuted&&!cell.showOutput">
       <div
         class="ace-cell"
         ui-ace="{
@@ -26,14 +26,15 @@
     </div>
     <div
       class="col-md-12 col-sm-12"
-      ng-show="cell.isActive&&cell.editing">
+      ng-show="cell.isActive&&cell.showOutput">
       <form class="form-inline pull-right" ng-click="$event.stopPropagation()">
         <div class="btn-group btn-group-sm" role="group">
           <button
             type="button"
             class="btn btn-default"
             tooltip-placement="top"
-            tooltip="Run All Cells Above">
+            tooltip="Run All Cells Above"
+            ng-click="runAllCellsAbove(cell)">
             <i class="fa fa-forward"></i>
           </button>
           <button
@@ -73,12 +74,12 @@
     </div>
     <div
       class="col-md-12 col-sm-12"
-      ng-show="cell.isActive&&!cell.editing">
+      ng-show="cell.isActive&&!cell.showOutput">
       <span
         class="pull-right"
         tooltip-placement="left"
         tooltip="Edit Cell"
-        ng-click="cell.editing=!cell.editing;cell.hasExecuted=false">
+        ng-click="cell.showOutput=false;cell.hasExecuted=false">
         <i class="fa fa-pencil"></i>
       </span>
     </div>
