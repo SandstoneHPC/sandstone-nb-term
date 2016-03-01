@@ -1,10 +1,11 @@
 <div
   class="panel nb-panel nb-panel-markdown"
   ng-class="{'nb-panel-executed':cell.hasExecuted,'nb-panel-active':cell.isActive}"
-  ng-init="editing=false">
+  ng-click="setActive(cell)"
+  ng-init="editing=true">
   <div class="row">
     <div
-      class="col-md-1 col-sm-2"
+      class="col-md-1 col-sm-2 hidden-xs"
       ng-hide="cell.hasExecuted&&!editing">
       <h5 class="text-right nb-in-label">In [{{$index}}]:</h5>
     </div>
@@ -39,7 +40,8 @@
             type="button"
             class="btn btn-default"
             tooltip-placement="top"
-            tooltip="Run Cell">
+            tooltip="Run Cell"
+            ng-click="editing=false;cell.hasExecuted=true">
             <i class="fa fa-play"></i>
           </button>
           <div class="btn-group btn-group-sm" dropdown>
@@ -48,9 +50,9 @@
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-              <li><a href>Insert Cell Above</a></li>
-              <li><a href>Insert Cell Below</a></li>
-              <li><a href>Delete Cell</a></li>
+              <li><a href ng-click="insertCellAbove(cell)">Insert Cell Above</a></li>
+              <li><a href ng-click="insertCellBelow(cell)">Insert Cell Below</a></li>
+              <li><a href ng-click="deleteCell(cell)">Delete Cell</a></li>
             </ul>
           </div>
         </div>
@@ -63,7 +65,7 @@
         </div>
       </form>
     </div>
-    <div class="col-md-12 col-sm-12" ng-show="cell.hasExecuted&&!editing">
+    <div class="col-md-12 col-sm-12" ng-hide="!cell.hasExecuted&&!cell.isActive">
       <div
         class="nb-output nb-output-markdown"
         marked="cell.input">
@@ -76,7 +78,7 @@
         class="pull-right"
         tooltip-placement="left"
         tooltip="Edit Cell"
-        ng-click="editing=!editing">
+        ng-click="editing=!editing;cell.hasExecuted=false">
         <i class="fa fa-pencil"></i>
       </span>
     </div>

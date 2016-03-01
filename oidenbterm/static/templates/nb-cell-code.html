@@ -1,19 +1,23 @@
 <div
   class="panel nb-panel"
-  ng-class="{'nb-panel-executed':cell.hasExecuted,'nb-panel-active':cell.isActive}">
+  ng-class="{'nb-panel-executed':cell.hasExecuted,'nb-panel-active':cell.isActive}"
+  ng-click="setActive(cell)">
   <div class="row">
-    <div class="col-md-1 col-sm-2">
+    <div class="col-md-1 col-sm-2 hidden-xs">
       <h5 class="text-right nb-in-label">In [{{$index}}]:</h5>
     </div>
     <div class="col-md-11 col-sm-10">
-      <div class="ace-cell" ui-ace="{
-        mode: '{{kernelName}}',
-        rendererOptions: {
-          fontSize: '12pt',
-          maxLines: Infinity,
-          showGutter: false
-        }
-      }"></div>
+      <div
+        class="ace-cell"
+        ui-ace="{
+          mode: '{{kernelName}}',
+          rendererOptions: {
+            fontSize: '12pt',
+            maxLines: Infinity,
+            showGutter: false
+          }
+        }"
+        ng-model="cell.input"></div>
     </div>
     <div
       class="col-md-1 col-sm-2"
@@ -23,7 +27,7 @@
     <div
       class="col-md-11 col-sm-10"
       ng-show="cell.hasExecuted">
-      <pre class="nb-output"></pre>
+      <pre class="nb-output" ng-bind="cell.output"></pre>
     </div>
     <div
       class="col-md-12 col-sm-12"
@@ -41,7 +45,8 @@
             type="button"
             class="btn btn-default"
             tooltip-placement="top"
-            tooltip="Run Cell">
+            tooltip="Run Cell"
+            ng-click="runCell(cell)">
             <i class="fa fa-play"></i>
           </button>
           <div class="btn-group btn-group-sm" dropdown>
@@ -50,9 +55,9 @@
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-              <li><a href>Insert Cell Above</a></li>
-              <li><a href>Insert Cell Below</a></li>
-              <li><a href>Delete Cell</a></li>
+              <li><a href ng-click="insertCellAbove(cell)">Insert Cell Above</a></li>
+              <li><a href ng-click="insertCellBelow(cell)">Insert Cell Below</a></li>
+              <li><a href ng-click="deleteCell(cell)">Delete Cell</a></li>
             </ul>
           </div>
         </div>
