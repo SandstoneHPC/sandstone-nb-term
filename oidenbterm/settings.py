@@ -13,6 +13,8 @@ APP_SPECIFICATION = {
         'nbterm.css',
     ),
     'NG_MODULE_SCRIPTS': (
+        'bower_components/marked/marked.min.js',
+        'bower_components/angular-marked/dist/angular-marked.min.js',
         'nbterm.js',
         'nbnotebook.directive.js',
         'terminal.controller.js',

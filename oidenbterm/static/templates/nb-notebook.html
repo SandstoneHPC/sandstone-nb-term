@@ -1,6 +1,6 @@
 <div class="nb-container">
   <div
     ng-repeat="cell in cells"
-    ng-include="'/static/nbterm/templates/nb-cell.html'">
+    ng-include="'/static/nbterm/templates/nb-cell-' + cell.type + '.html'">
   </div>
 </div>

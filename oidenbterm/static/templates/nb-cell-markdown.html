@@ -1,0 +1,69 @@
+<div
+  class="panel nb-panel nb-panel-markdown"
+  ng-class="{'nb-panel-executed':cell.hasExecuted,'nb-panel-active':cell.isActive}">
+  <div class="row">
+    <div class="col-md-1 col-sm-2">
+      <h5 class="text-right nb-in-label">In [{{$index}}]:</h5>
+    </div>
+    <div class="col-md-11 col-sm-10">
+      <div class="ace-cell" ui-ace="{
+        mode: 'markdown',
+        rendererOptions: {
+          fontSize: '12pt',
+          maxLines: Infinity,
+          showGutter: false
+        }
+      }"></div>
+    </div>
+    <div
+      class="col-md-1 col-sm-2"
+      ng-show="cell.hasExecuted">
+      <h5 class="text-right nb-out-label">Out [{{$index}}]:</h5>
+    </div>
+    <div
+      class="col-md-11 col-sm-10"
+      ng-show="cell.hasExecuted">
+      <pre class="nb-output"></pre>
+    </div>
+    <div
+      class="col-md-12 col-sm-12"
+      ng-show="cell.isActive">
+      <form class="form-inline pull-right">
+        <div class="btn-group btn-group-sm" role="group">
+          <button
+            type="button"
+            class="btn btn-default"
+            tooltip-placement="top"
+            tooltip="Run All Cells Above">
+            <i class="fa fa-forward"></i>
+          </button>
+          <button
+            type="button"
+            class="btn btn-default"
+            tooltip-placement="top"
+            tooltip="Run Cell">
+            <i class="fa fa-play"></i>
+          </button>
+          <div class="btn-group btn-group-sm" dropdown>
+            <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
+              More
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href>Insert Cell Above</a></li>
+              <li><a href>Insert Cell Below</a></li>
+              <li><a href>Delete Cell</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-group">
+          <select
+            class="form-control input-sm"
+            ng-options="type.id as type.name for type in cellTypes"
+            ng-model="cell.type">
+          </select>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

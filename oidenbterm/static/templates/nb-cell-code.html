@@ -52,16 +52,15 @@
             <ul class="dropdown-menu" role="menu">
               <li><a href>Insert Cell Above</a></li>
               <li><a href>Insert Cell Below</a></li>
-              <li><a href>Convert to Markdown</a></li>
               <li><a href>Delete Cell</a></li>
             </ul>
           </div>
         </div>
         <div class="form-group">
-          <select class="form-control input-sm">
-            <option>Code</option>
-            <option>Markdown</option>
-            <option>Heading</option>
+          <select
+            class="form-control input-sm"
+            ng-options="type.id as type.name for type in cellTypes"
+            ng-model="cell.type">
           </select>
         </div>
       </form>
