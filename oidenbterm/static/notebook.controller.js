@@ -22,7 +22,7 @@ angular.module('oide.nbterm')
       console.log(data);
     });
   };
-  
+
   self.shutdownKernel = function() {
     $http({
       url: '/nbterm/a/kernel/execute',
