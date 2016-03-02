@@ -2,22 +2,30 @@
 
 angular.module('oide.nbterm')
 
-.controller('NotebookCtrl', [function() {
+.controller('NotebookCtrl', ['$scope','NotebookService',function($scope,NotebookService) {
   var self = this;
 
-  self.cells = [
-    {
-      type:'code',
-      isActive:true,
-    },{
-      type:'code'
-    },{
-      type:'markdown'
-    },{
-      type:'markdown',
-      input: '__HI__ this is a *test*!!'
-    },{
-      type:'markdown',
-      input: '__HI__ this is __another__ a *test*!!'
-    }];
+  self.cells = [];
+  self.runQueue = [];
+
+  $scope.$watchCollection(
+    function(scope) {
+      return scope.ctrl.runQueue;
+    },
+    function(newVal, oldVal) {
+    angular.forEach(self.cells, function(c) {
+      // Execute through the stack.
+      self.cells.splice(0,1);
+      NotebookService.executeCodeCell(c);
+    });
+  });
+
+  self.startKernel = function() {
+    NotebookService.startKernel();
+  };
+
+  self.stopKernel = function() {
+    NotebookService.stopKernel();
+  };
+
 }]);

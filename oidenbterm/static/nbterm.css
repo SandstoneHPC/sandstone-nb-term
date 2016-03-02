@@ -87,6 +87,10 @@
   color: #d9534f;
 }
 
+.nb-action.fa-play {
+  color: #93c54b;
+}
+
 .nb-out-label {
   color: #888888;
 }

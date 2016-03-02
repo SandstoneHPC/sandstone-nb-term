@@ -8,7 +8,7 @@ angular.module('oide.nbterm')
     scope: {
       kernelName: '@',
       cells: '=',
-      kernelStatus: '='
+      runQueue: '='
     },
     templateUrl: '/static/nbterm/templates/nb-notebook.html',
     controller: function($scope,$element,$timeout) {
@@ -17,6 +17,7 @@ angular.module('oide.nbterm')
         {id:'code',name:'Code'},
         {id:'heading',name:'Heading'}
       ];
+
       $scope.setActive = function(cell) {
         angular.forEach($scope.cells, function(c) {
           c.isActive = false;
@@ -51,15 +52,17 @@ angular.module('oide.nbterm')
           cell.hasExecuted = true;
         } else {
           cell.hasExecuted = false;
+          cell.running = true;
           cell.showOutput = true;
-          $scope.kernelStatus = 'busy';
+          $scope.runQueue.push(cell);
           // Eventually, the nb service will set the output
           // on the model, and then revert its status to 'idle'.
-          $timeout(function() {
-            $scope.kernelStatus = 'idle';
-            cell.hasExecuted = true;
-            cell.output = 'This code ran!';
-          }, 1000);
+          // $timeout(function() {
+          //   $scope.kernelStatus = 'idle';
+          //   cell.hasExecuted = true;
+          //   cell.running = false;
+          //   cell.output = 'This code ran!';
+          // }, 1000);
         }
         // Post-Run
         var index = $scope.cells.indexOf(cell);
@@ -76,6 +79,11 @@ angular.module('oide.nbterm')
           type: cellType
         };
       };
+
+      if ($scope.cells.length===0) {
+        var firstCell = createNewCell('code');
+        $scope.cells.push(firstCell);
+      }
     }
   };
 }]);
