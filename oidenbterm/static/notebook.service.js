@@ -22,6 +22,7 @@ angular.module('oide.nbterm')
       });
     },
     executeCodeCell: function(cell) {
+      $log.log(cell);
       $http({
         url: '/nbterm/a/kernel/execute',
         method: 'POST',

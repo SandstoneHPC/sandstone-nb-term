@@ -8,7 +8,11 @@ angular.module('oide.nbterm')
   self.cells = [];
   self.runQueue = [];
 
-  $scope.$watchCollection('self.runQueue', function() {
+  $scope.$watchCollection(
+    function(scope) {
+      return scope.ctrl.runQueue;
+    },
+    function(newVal, oldVal) {
     angular.forEach(self.cells, function(c) {
       // Execute through the stack.
       self.cells.splice(0,1);
