@@ -2,39 +2,26 @@
 
 angular.module('oide.nbterm')
 
-.controller('NotebookCtrl', ['$http', function($http) {
+.controller('NotebookCtrl', ['$scope','NbNotebookService',function($scope,NbNotebookService) {
   var self = this;
 
   self.cells = [];
+  self.runQueue = [];
 
-  self.executeCode = function() {
-    $http({
-      url: '/nbterm/a/kernel/execute',
-      method: 'POST',
-      data: {
-        code: "print 'Hello, World'",
-        operation: 'EXECUTE_CODE'
-      },
-      params: {
-        _xsrf:getCookie('_xsrf')
-      }
-    }).success(function(data){
-      console.log(data);
+  $scope.$watchCollection('self.runQueue', function() {
+    angular.forEach(self.cells, function(c) {
+      // Execute through the stack.
+      self.cells.splice(0,1);
+      NbNotebookService.executeCodeCell(c);
     });
+  });
+
+  self.startKernel = function() {
+    NbNotebookService.startKernel();
   };
 
-  self.shutdownKernel = function() {
-    $http({
-      url: '/nbterm/a/kernel/execute',
-      method: 'POST',
-      data: {
-        operation: 'SHUTDOWN_KERNEL'
-      },
-      params: {
-        _xsrf:getCookie('_xsrf')
-      }
-    }).success(function(data){
-      console.log(data);
-    });
+  self.stopKernel = function() {
+    NbNotebookService.stopKernel();
   };
+
 }]);
