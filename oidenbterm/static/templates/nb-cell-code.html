@@ -52,6 +52,7 @@
             class="btn btn-default"
             tooltip-placement="top"
             tooltip="Run Cell"
+            ng-disabled="cell.input==''"
             ng-click="cell.showOutput=true;runCell(cell)">
             <i class="fa fa-play"></i>
           </button>

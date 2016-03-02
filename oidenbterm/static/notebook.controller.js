@@ -13,11 +13,10 @@ angular.module('oide.nbterm')
       return scope.ctrl.runQueue;
     },
     function(newVal, oldVal) {
-    angular.forEach(self.cells, function(c) {
-      // Execute through the stack.
-      self.cells.splice(0,1);
-      NotebookService.executeCodeCell(c);
-    });
+      if (newVal.length > 0) {
+        var c = newVal.splice(0,1);
+        NotebookService.executeCodeCell(c[0]);
+      }
   });
 
   self.startKernel = function() {

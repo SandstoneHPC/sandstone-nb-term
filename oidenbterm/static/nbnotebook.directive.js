@@ -55,14 +55,6 @@ angular.module('oide.nbterm')
           cell.running = true;
           cell.showOutput = true;
           $scope.runQueue.push(cell);
-          // Eventually, the nb service will set the output
-          // on the model, and then revert its status to 'idle'.
-          // $timeout(function() {
-          //   $scope.kernelStatus = 'idle';
-          //   cell.hasExecuted = true;
-          //   cell.running = false;
-          //   cell.output = 'This code ran!';
-          // }, 1000);
         }
         // Post-Run
         var index = $scope.cells.indexOf(cell);

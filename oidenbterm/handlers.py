@@ -18,7 +18,6 @@ class AuthTermSocket(TermSocket,BaseHandler):
 class KernelHandler(BaseHandler, KernelMixin):
     @oide.lib.decorators.authenticated
     def post(self):
-        # print self.request.body
         body = json.loads(self.request.body)
         operation = body["operation"]
 

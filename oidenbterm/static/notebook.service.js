@@ -15,7 +15,7 @@ angular.module('oide.nbterm')
           operation: 'SHUTDOWN_KERNEL'
         },
         params: {
-          _xsrf:getCookie('_xsrf')
+          _xsrf: getCookie('_xsrf')
         }
       }).success(function(data){
         $log.log(data);
@@ -31,11 +31,11 @@ angular.module('oide.nbterm')
           operation: 'EXECUTE_CODE'
         },
         params: {
-          _xsrf:getCookie('_xsrf')
+          _xsrf: getCookie('_xsrf')
         }
       }).success(function(data){
         $log.log(data);
-        cell.output = data;
+        cell.output = data.res[1].text;
         cell.running = false;
         cell.hasExecuted = true;
       });

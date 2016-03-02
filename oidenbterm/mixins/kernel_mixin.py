@@ -7,6 +7,7 @@ class KernelMixin(tornado.web.RequestHandler):
     def initialize(self):
         if not hasattr(self.application, 'kernel'):
             self.kernel_manager = jupyter_client.KernelManager()
+            self.kernel_manager.kernel_name = 'bash'
             self.kernel_manager.start_kernel()
             self.application.kernel_manager = self.kernel_manager
             self.application.kernel = self.kernel_manager.client()
