@@ -16,7 +16,7 @@ APP_SPECIFICATION = {
         'bower_components/marked/marked.min.js',
         'bower_components/angular-marked/dist/angular-marked.min.js',
         'nbterm.js',
-        'nbnotebook.service.js',
+        'notebook.service.js',
         'nbnotebook.directive.js',
         'terminal.controller.js',
         'notebook.controller.js'

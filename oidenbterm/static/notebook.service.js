@@ -2,7 +2,7 @@
 
 angular.module('oide.nbterm')
 
-.factory('NbNotebookService', ['$http','$log',function($http,$log) {
+.factory('NotebookService', ['$http','$log',function($http,$log) {
   return {
     startKernel: function() {
       // Just a stub.
