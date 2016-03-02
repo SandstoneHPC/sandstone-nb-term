@@ -7,6 +7,7 @@ angular.module('oide.nbterm')
 
   self.cells = [];
   self.runQueue = [];
+  self.kernelStatus = NotebookService.getKernelStatus;
 
   $scope.$watchCollection(
     function(scope) {

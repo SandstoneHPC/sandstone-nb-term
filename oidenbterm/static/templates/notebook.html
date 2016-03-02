@@ -24,7 +24,10 @@
           <i class="fa fa-floppy-o nb-action"></i>
         </button>
       </div>
-      <div class="btn-group btn-group-sm" role="group">
+      <div
+        class="btn-group btn-group-sm"
+        role="group"
+        ng-show="ctrl.kernelStatus()!=='stopped'">
         <button
           type="button"
           class="btn btn-default"
@@ -35,17 +38,19 @@
         </button>
       </div>
 
-      <!-- <div class="btn-group btn-group-sm" role="group">
+      <div
+        class="btn-group btn-group-sm"
+        role="group"
+        ng-show="ctrl.kernelStatus()=='stopped'">
         <button
           type="button"
           class="btn btn-default"
           tooltip-placement="bottom"
           tooltip="Start Kernel"
-          ng-show="ctrl.kernelStatus=='stopped'"
           ng-click="ctrl.startKernel()">
           <i class="fa fa-play nb-action"></i>
         </button>
-      </div> -->
+      </div>
     </div>
   </div>
 </div>

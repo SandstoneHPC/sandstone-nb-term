@@ -21,13 +21,12 @@ class KernelHandler(BaseHandler, KernelMixin):
         body = json.loads(self.request.body)
         operation = body["operation"]
 
+        if operation == "START_KERNEL":
+            self.start_kernel()
+            self.write({'res': 'kernel_started'})
         if operation == "SHUTDOWN_KERNEL":
-            # shutdown the kernel
-            self.kernel_manager.shutdown_kernel()
-            while self.kernel_manager.is_alive():
-                pass
-            # now we can be sure the kernel is shut down
-            self.write({'res': []});
+            self.shutdown_kernel()
+            self.write({'res': 'kernel_stopped'});
         elif operation == "EXECUTE_CODE":
             code = json.loads(self.request.body)["code"]
             msg_id = self.kernel.execute(code)

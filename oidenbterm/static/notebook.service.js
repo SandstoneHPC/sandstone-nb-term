@@ -3,9 +3,26 @@
 angular.module('oide.nbterm')
 
 .factory('NotebookService', ['$http','$log',function($http,$log) {
+  var kernelStatus = 'idle';
+
   return {
+    getKernelStatus: function() {
+      return kernelStatus;
+    },
     startKernel: function() {
-      // Just a stub.
+      $http({
+        url: '/nbterm/a/kernel/execute',
+        method: 'POST',
+        data: {
+          operation: 'START_KERNEL'
+        },
+        params: {
+          _xsrf: getCookie('_xsrf')
+        }
+      }).success(function(data){
+        $log.log(data);
+        kernelStatus = 'idle';
+      });
     },
     stopKernel: function() {
       $http({
@@ -19,6 +36,7 @@ angular.module('oide.nbterm')
         }
       }).success(function(data){
         $log.log(data);
+        kernelStatus = 'stopped';
       });
     },
     executeCodeCell: function(cell) {
