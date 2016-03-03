@@ -4,6 +4,7 @@ angular.module('oide.nbterm')
 
 .factory('NotebookService', ['$http','$log',function($http,$log) {
   var kernelStatus = 'idle';
+  var lastSave = '';
 
   return {
     getKernelStatus: function() {
@@ -56,6 +57,22 @@ angular.module('oide.nbterm')
         cell.output = data.res[1].text;
         cell.running = false;
         cell.hasExecuted = true;
+      });
+    },
+    saveNotebook: function(cells,filepath) {
+      $http({
+        url: '/nbterm/a/notebook',
+        method: 'POST',
+        data: {
+          cells: cells
+        },
+        params: {
+          _xsrf: getCookie('_xsrf'),
+          filepath: filepath
+        }
+      }).success(function(data){
+        $log.log(data);
+        lastSave = (new Date).toLocaleFormat("%A, %B %e, %Y");
       });
     }
   };

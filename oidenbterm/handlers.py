@@ -8,6 +8,7 @@ from traitlets import Integer
 import json
 import tornado.web
 import jupyter_client
+import nbformat
 
 class AuthTermSocket(TermSocket,BaseHandler):
 
@@ -112,3 +113,64 @@ class KernelHandler(BaseHandler, KernelMixin):
                             #    "documents or increase the timeout!")
                 # self.log.error("line(s): %s" % lines)
             self.write({'res': res})
+
+class NotebookHandler(BaseHandler):
+
+    @oide.lib.decorators.authenticated
+    def post(self, *args, **kwargs):
+        # Given a list of nb cells, save to ipynb format v4
+        filepath = self.get_argument('filepath')
+        filepath = '{}.ipynb'.format(filepath)
+        cells = json.loads(self.request.body)['cells']
+
+        nb_cells = []
+        for cell in cells:
+            cinput = cell.get('input', '')
+            coutput = cell.get('output', '')
+            ctype = cell.get('type')
+            tmp_cell = {
+                "cell_type": ctype,
+                "metadata": {
+                    "collapsed" : False, # whether the output of the cell is collapsed
+                    "autoscroll": "auto", # any of true, false or "auto"
+                },
+                "source": cinput,
+            }
+            if ctype=='code':
+                tmp_cell.update({
+                    "execution_count": None,
+                    "outputs": [{
+                        "output_type" : "stream",
+                        "name" : "stdout",
+                        "text" : coutput,
+                    }]
+                })
+            nb_cells.append(tmp_cell)
+
+        base_nb = {
+            'metadata': {
+                'kernelspec': {
+                    'name': 'bash',
+                    "display_name": "Bash",
+                    "language": "bash"
+                },
+                "language_info": {
+                    "codemirror_mode": "shell",
+                    "file_extension": ".sh",
+                    "mimetype": "text/x-sh",
+                    "name": "bash"
+                }
+            },
+            'nbformat': 4,
+            'nbformat_minor': 0,
+            'cells': nb_cells
+        }
+
+        try:
+            nbformat.validate(base_nb,version=4)
+            nb = nbformat.from_dict(base_nb)
+            nbformat.write(nb,filepath)
+            self.write({'res':'File saved to {}'.format(filepath)})
+        except nbformat.ValidationError:
+            self.set_status(400)
+            return

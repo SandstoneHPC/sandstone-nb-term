@@ -17,6 +17,12 @@ angular.module('oide.nbterm')
         {id:'code',name:'Code'},
         {id:'heading',name:'Heading'}
       ];
+      
+      if ($scope.kernelName=='bash') {
+        $scope.modeName = 'sh';
+      } else {
+        $scope.modeName = $scope.kernelName;
+      }
 
       $scope.setActive = function(cell) {
         angular.forEach($scope.cells, function(c) {
