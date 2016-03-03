@@ -55,6 +55,7 @@ angular.module('oide.nbterm')
       $scope.runCell = function(cell) {
         if (cell.type === 'markdown') {
           cell.showOutput = false;
+          cell.editing = false;
           cell.hasExecuted = true;
         } else {
           cell.hasExecuted = false;
