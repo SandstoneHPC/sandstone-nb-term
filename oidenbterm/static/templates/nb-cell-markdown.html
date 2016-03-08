@@ -2,7 +2,7 @@
   class="panel nb-panel nb-panel-markdown"
   ng-class="{'nb-panel-executed':cell.editing,'nb-panel-active':cell.isActive}"
   ng-click="setActive(cell)"
-  ng-init="cell.editing=true">
+  ng-init="cell.editing=!cell.hasExecuted">
   <div class="row">
     <div
       class="col-md-1 col-sm-2 hidden-xs"

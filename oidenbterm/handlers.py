@@ -117,6 +117,36 @@ class KernelHandler(BaseHandler, KernelMixin):
 class NotebookHandler(BaseHandler):
 
     @oide.lib.decorators.authenticated
+    def get(self, *args, **kwargs):
+        # Given a filepath for a notebook, return formatted
+        # cell contents.
+        filepath = self.get_argument('filepath')
+        cells = []
+
+        with open(filepath, 'r') as nb_file:
+            nb_cells = json.load(nb_file)['cells']
+
+        for cell in nb_cells:
+            tmp_cell = {}
+            tmp_cell['type'] = cell.get('cell_type')
+            tmp_cell['input'] = ''.join(cell.get('source', ''))
+            try:
+                if len(cell['outputs'][0]['text']) > 0:
+                    tmp_cell['output'] = ''.join(cell['outputs'][0]['text'])
+                    tmp_cell['hasExecuted'] = True
+                    tmp_cell['showOutput'] = True
+                else:
+                    tmp_cell['output'] = ''
+            except KeyError:
+                pass
+            if cell['cell_type'] == 'markdown':
+                tmp_cell['editing'] = false
+                tmp_cell['hasExecuted'] = True
+            cells.append(tmp_cell)
+
+        self.write({'cells':cells})
+
+    @oide.lib.decorators.authenticated
     def post(self, *args, **kwargs):
         # Given a list of nb cells, save to ipynb format v4
         filepath = self.get_argument('filepath')

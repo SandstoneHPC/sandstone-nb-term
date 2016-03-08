@@ -3,10 +3,14 @@
 angular.module('oide.nbterm')
 
 .factory('NotebookService', ['$http','$log',function($http,$log) {
+  var nbCells = {
+    cells: []
+  };
   var kernelStatus = 'idle';
   var lastSave = '';
 
   return {
+    cellsObj: nbCells,
     getKernelStatus: function() {
       return kernelStatus;
     },
@@ -57,6 +61,22 @@ angular.module('oide.nbterm')
         cell.output = data.res[1].text;
         cell.running = false;
         cell.hasExecuted = true;
+      });
+    },
+    openNotebook: function(filepath) {
+      $http({
+        url: '/nbterm/a/notebook',
+        method: 'GET',
+        params: {
+          _xsrf: getCookie('_xsrf'),
+          filepath: filepath
+        }
+      }).success(function(data) {
+        $log.log(data);
+        nbCells.cells = [];
+        angular.forEach(data.cells, function(cell,index) {
+          nbCells.cells.push(cell);
+        });
       });
     },
     saveNotebook: function(cells,filepath) {

@@ -1,0 +1,38 @@
+<div class="modal-header">
+    <h3 class="modal-title">Open Notebook</h3>
+</div>
+<div class="modal-body">
+  <div class="container-fluid">
+    <form class="form form-horizontal">
+      <div class="form-group form-group-sm">
+        <label class="col-sm-3 control-label">Select File</label>
+        <div class="col-sm-6">
+          <input class="form-control" type="text" ng-model="newFile.filepath" ng-disabled="true">
+        </div>
+      </div>
+    </form>
+    <div class="col-sm-7 col-sm-offset-2">
+      <treecontrol
+        class="tree-oide"
+        tree-model="treeData.filetreeContents"
+        options="treeOptions"
+        order-by="type+filename"
+        selected-nodes="treeData.selectedNodes"
+        expanded-nodes="treeData.expandedNodes"
+        on-node-toggle="getDirContents(node,expanded)"
+        on-selection="updateSelection(node, selected)">
+        {{node.filename}}
+        <span class="filetree-permissions">{{node.permissions}}</span>
+      </treecontrol>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+    class="btn btn-success"
+    ng-click="open()"
+    ng-disabled="invalidFilepath">
+    Open Notebook
+  </button>
+  <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>

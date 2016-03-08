@@ -2,7 +2,7 @@
   class="panel nb-panel"
   ng-class="{'nb-panel-executed':cell.showOutput,'nb-panel-active':cell.isActive}"
   ng-click="setActive(cell)"
-  ng-init="cell.showOutput=false">
+  ng-init="cell.showOutput=cell.showOutput||false">
   <div class="row">
     <div class="col-md-1 col-sm-2 hidden-xs">
       <h5 class="text-right nb-in-label">In [{{$index}}]:</h5>
