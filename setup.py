@@ -4,7 +4,7 @@ from setuptools import find_packages
 
 setup(
     name='oide-nb-term',
-    version='0.0.dev1',
+    version='0.1.0',
     author=u'Zebula Sampedro',
     author_email='sampedro@colorado.edu',
     packages=find_packages(),
@@ -12,7 +12,7 @@ setup(
     url='https://github.com/ResearchComputing/oide-nb-term',
     license='AGPLv3, see LICENSE',
     description="Online Integrated Development Environment (OIDE) - NBTerm",
-    long_description=open('README.md').read(),
+    long_description=open('DESCRIPTION.rst').read(),
     zip_safe=False,
     install_requires=[
         'oide',
@@ -20,7 +20,7 @@ setup(
         'bash_kernel',
     ],
     classifiers=[
-        'Development Status :: 1 - Planning',
+        'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'Natural Language :: English',
         'Operating System :: Unix',

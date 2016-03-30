@@ -1,4 +1,5 @@
-include AUTHORS CHANGES README.md INSTALL LICENSE
-recursive-include oidenbterm *
-exclude .git
-recursive-exclude .gitignore
+include AUTHORS CHANGES README.md INSTALL LICENSE DESCRIPTION.rst
+recursive-exclude oidenbterm *.pyc
+recursive-include oidenbterm *.py *.js *.html *.css
+prune .git
+prune .gitignore
