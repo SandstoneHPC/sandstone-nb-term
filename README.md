@@ -36,8 +36,8 @@ Switch back to the project root and install the python package (a virtualenv is 
 python setup.py install
 ```
 
-Now, add `oidenbterm` to the `INSTALLED_APPS` settings tuple in your `oide_settings.py` file.
 
+Now, add `oidenbterm` to the `INSTALLED_APPS` settings tuple in your `oide_settings.py` file.
 
 The OIDE, which will now include the OIDE NBTerm app, can now be run with the following command:
 ```
