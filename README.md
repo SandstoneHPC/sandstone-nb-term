@@ -16,12 +16,13 @@ cd oidenbterm
 bower install
 ```
 
-Now configure your local OIDE NBTerm app settings, if they diverge from the defaults. The settings file may be modified directly, or be overridden with a `local_settings.py` file in the `oidenbterm` directory:
-
 Switch back to the project root and install the python package (a virtualenv is recommended):
 ```
 python setup.py install
 ```
+
+Now, add `oidenbterm` to the `INSTALLED_APPS` settings override in your `oide_settings.py` file.
+
 The OIDE, which will now include the OIDE NBTerm app, can now be run with the following command:
 ```
 oide
