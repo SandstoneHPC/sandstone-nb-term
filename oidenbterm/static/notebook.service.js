@@ -92,7 +92,7 @@ angular.module('oide.nbterm')
         }
       }).success(function(data){
         $log.log(data);
-        lastSave = (new Date).toLocaleFormat("%A, %B %e, %Y");
+        lastSave = new Date();
       });
     }
   };

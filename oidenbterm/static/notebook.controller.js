@@ -81,8 +81,6 @@ angular.module('oide.nbterm')
   };
 }])
 .controller('OpenModalCtrl', function ($scope, $modalInstance, $http, file) {
-  $scope.treeData = {};
-
   $scope.treeData = {
     filetreeContents: [],
     selectedNodes: []
@@ -170,7 +168,28 @@ angular.module('oide.nbterm')
   };
 })
 .controller('SaveAsModalCtrl', function ($scope, $modalInstance, $http, file) {
-  $scope.treeData = {};
+  $scope.treeData = {
+    filetreeContents: [],
+    selectedNodes: []
+  };
+
+  $scope.sd = {
+    noSelections: true,
+    multipleSelections: false,
+    dirSelected: false
+  };
+
+  $scope.$watch(function(){
+    return $scope.treeData.selectedNodes;
+  }, function(newValue){
+    if(newValue.length > 0) {
+      $scope.newFile.filepath = newValue[0].filepath;
+      $scope.invalidFilepath = false;
+    } else {
+      $scope.invalidFilepath = true;
+    }
+  });
+
   var initialContents = $http
     .get('/filebrowser/filetree/a/dir')
     .success(function(data, status, headers, config) {
