@@ -6,7 +6,8 @@
           type="button"
           class="btn btn-default"
           tooltip-placement="bottom"
-          tooltip="New Notebook">
+          tooltip="New Notebook"
+          ng-click="ctrl.newNotebook()">
           <i class="fa fa-file-text-o nb-action"></i>
         </button>
         <button
@@ -61,4 +62,5 @@
   nb-notebook
   kernel-name="bash"
   cells="ctrl.cellsObj.cells"
-  run-queue="ctrl.runQueue"></div>
+  run-queue="ctrl.runQueue"
+  unsaved="ctrl.unsaved"></div>

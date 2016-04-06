@@ -8,7 +8,8 @@ angular.module('oide.nbterm')
     scope: {
       kernelName: '@',
       cells: '=',
-      runQueue: '='
+      runQueue: '=',
+      unsaved: '='
     },
     templateUrl: '/static/nbterm/templates/nb-notebook.html',
     controller: function($scope,$element,$timeout) {
@@ -17,7 +18,7 @@ angular.module('oide.nbterm')
         {id:'code',name:'Code'},
         {id:'heading',name:'Heading'}
       ];
-      
+
       if ($scope.kernelName=='bash') {
         $scope.modeName = 'sh';
       } else {
@@ -30,6 +31,11 @@ angular.module('oide.nbterm')
         });
         cell.isActive = true;
       };
+
+      $scope.aceChanged = function() {
+        $scope.unsaved = true;
+      };
+
       $scope.deleteCell = function(cell) {
         var index = $scope.cells.indexOf(cell);
         $scope.cells.splice(index,1);
@@ -83,6 +89,17 @@ angular.module('oide.nbterm')
         var firstCell = createNewCell('code');
         $scope.cells.push(firstCell);
       }
+
+      $scope.$watchCollection(function(){
+        return $scope.cells;
+      }, function(newVal, oldVal) {
+        if(newVal.length == 0) {
+          var firstCell = createNewCell('code');
+          $scope.cells.push(firstCell);
+        } else {
+          $scope.unsaved = true;
+        }
+      });
     }
   };
 }]);

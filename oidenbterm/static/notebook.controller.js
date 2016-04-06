@@ -5,13 +5,28 @@ angular.module('oide.nbterm')
 .controller('NotebookCtrl', ['$scope','$log','$modal','NotebookService',function($scope,$log,$modal,NotebookService) {
   var self = this;
 
-  self.cellsObj = NotebookService.cellsObj;
-  self.runQueue = [];
-  self.kernelStatus = NotebookService.getKernelStatus;
-  self.nbFile = {
-    filepath: '-',
-    filename: 'Untitled'
+  self.initialize = function() {
+    self.cellsObj = NotebookService.cellsObj;
+    self.runQueue = [];
+    self.kernelStatus = NotebookService.getKernelStatus;
+    self.nbFile = {
+      filepath: '-',
+      filename: 'Untitled'
+    };
+    self.unsaved = false;
   };
+
+  self.reset = function () {
+    self.nbFile = {
+      filepath: '-',
+      filename: 'Untitled'
+    };
+    self.cellsObj.cells = [];
+    self.runQueue = [];
+    self.unsaved = false;
+  };
+
+  self.initialize();
 
   $scope.$watchCollection(
     function(scope) {
@@ -30,6 +45,34 @@ angular.module('oide.nbterm')
 
   self.stopKernel = function() {
     NotebookService.stopKernel();
+  };
+
+  self.newNotebook = function() {
+    if(self.unsaved) {
+      var unsavedModalInstance = $modal.open({
+        templateUrl: '/static/nbterm/templates/close-unsaved-modal.html',
+        backdrop: 'static',
+        keyboard: false,
+        controller: 'UnsavedModalCtrl',
+        resolve: {
+          file: function() {
+            return self.nbFile;
+          }
+        }
+      });
+
+      unsavedModalInstance.result.then(function(file){
+        if(file.saveFile) {
+          self.saveNotebook();
+          self.reset();
+        } else {
+          self.reset();
+        }
+      });
+
+    } else {
+      self.reset();
+    }
   };
 
   self.openNotebook = function() {
@@ -260,6 +303,23 @@ angular.module('oide.nbterm')
   $scope.saveAs = function () {
     $scope.newFile.filepath = $scope.newFile.filepath+$scope.newFile.filename;
     $modalInstance.close($scope.newFile);
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+})
+.controller('UnsavedModalCtrl', function ($scope, $modalInstance, file) {
+  $scope.file = file;
+
+  $scope.save = function () {
+    $scope.file.saveFile = true;
+    $modalInstance.close($scope.file);
+  };
+
+  $scope.close = function () {
+    $scope.file.saveFile = false;
+    $modalInstance.close($scope.file);
   };
 
   $scope.cancel = function () {
