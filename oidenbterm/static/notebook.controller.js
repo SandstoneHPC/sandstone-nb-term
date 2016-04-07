@@ -5,13 +5,28 @@ angular.module('oide.nbterm')
 .controller('NotebookCtrl', ['$scope','$log','$modal','NotebookService',function($scope,$log,$modal,NotebookService) {
   var self = this;
 
-  self.cellsObj = NotebookService.cellsObj;
-  self.runQueue = [];
-  self.kernelStatus = NotebookService.getKernelStatus;
-  self.nbFile = {
-    filepath: '-',
-    filename: 'Untitled'
+  self.initialize = function() {
+    self.cellsObj = NotebookService.cellsObj;
+    self.runQueue = [];
+    self.kernelStatus = NotebookService.getKernelStatus;
+    self.nbFile = {
+      filepath: '-',
+      filename: 'Untitled'
+    };
+    self.unsaved = false;
   };
+
+  self.reset = function () {
+    self.nbFile = {
+      filepath: '-',
+      filename: 'Untitled'
+    };
+    self.cellsObj.cells = [];
+    self.runQueue = [];
+    self.unsaved = false;
+  };
+
+  self.initialize();
 
   $scope.$watchCollection(
     function(scope) {
@@ -30,6 +45,34 @@ angular.module('oide.nbterm')
 
   self.stopKernel = function() {
     NotebookService.stopKernel();
+  };
+
+  self.newNotebook = function() {
+    if(self.unsaved) {
+      var unsavedModalInstance = $modal.open({
+        templateUrl: '/static/nbterm/templates/close-unsaved-modal.html',
+        backdrop: 'static',
+        keyboard: false,
+        controller: 'UnsavedModalCtrl',
+        resolve: {
+          file: function() {
+            return self.nbFile;
+          }
+        }
+      });
+
+      unsavedModalInstance.result.then(function(file){
+        if(file.saveFile) {
+          self.saveNotebook();
+          self.reset();
+        } else {
+          self.reset();
+        }
+      });
+
+    } else {
+      self.reset();
+    }
   };
 
   self.openNotebook = function() {
@@ -81,7 +124,27 @@ angular.module('oide.nbterm')
   };
 }])
 .controller('OpenModalCtrl', function ($scope, $modalInstance, $http, file) {
-  $scope.treeData = {};
+  $scope.treeData = {
+    filetreeContents: [],
+    selectedNodes: []
+  };
+
+  $scope.sd = {
+    noSelections: true,
+    multipleSelections: false,
+    dirSelected: false
+  };
+
+  $scope.$watch(function(){
+    return $scope.treeData.selectedNodes;
+  }, function(newValue){
+    // $scope.newFile = newValue[0];
+    if(newValue.length == 0) {
+      return;
+    }
+    $scope.updateSelection(newValue[0]);
+  });
+
   var initialContents = $http
     .get('/filebrowser/filetree/a/dir')
     .success(function(data, status, headers, config) {
@@ -148,7 +211,28 @@ angular.module('oide.nbterm')
   };
 })
 .controller('SaveAsModalCtrl', function ($scope, $modalInstance, $http, file) {
-  $scope.treeData = {};
+  $scope.treeData = {
+    filetreeContents: [],
+    selectedNodes: []
+  };
+
+  $scope.sd = {
+    noSelections: true,
+    multipleSelections: false,
+    dirSelected: false
+  };
+
+  $scope.$watch(function(){
+    return $scope.treeData.selectedNodes;
+  }, function(newValue){
+    if(newValue.length > 0) {
+      $scope.newFile.filepath = newValue[0].filepath;
+      $scope.invalidFilepath = false;
+    } else {
+      $scope.invalidFilepath = true;
+    }
+  });
+
   var initialContents = $http
     .get('/filebrowser/filetree/a/dir')
     .success(function(data, status, headers, config) {
@@ -219,6 +303,23 @@ angular.module('oide.nbterm')
   $scope.saveAs = function () {
     $scope.newFile.filepath = $scope.newFile.filepath+$scope.newFile.filename;
     $modalInstance.close($scope.newFile);
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+})
+.controller('UnsavedModalCtrl', function ($scope, $modalInstance, file) {
+  $scope.file = file;
+
+  $scope.save = function () {
+    $scope.file.saveFile = true;
+    $modalInstance.close($scope.file);
+  };
+
+  $scope.close = function () {
+    $scope.file.saveFile = false;
+    $modalInstance.close($scope.file);
   };
 
   $scope.cancel = function () {
