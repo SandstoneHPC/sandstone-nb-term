@@ -39,6 +39,12 @@ angular.module('oide.nbterm')
       }
   });
 
+  $scope.$watch(function(){
+    return NotebookService.getKernelStatus;
+  }, function(newVal){
+    self.kernelStatus = newVal;
+  });
+
   self.startKernel = function() {
     NotebookService.startKernel();
   };

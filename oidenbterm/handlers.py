@@ -29,6 +29,8 @@ class KernelHandler(BaseHandler, KernelMixin):
             self.shutdown_kernel()
             self.write({'res': 'kernel_stopped'});
         elif operation == "EXECUTE_CODE":
+            if not self.kernel_started:
+                self.start_kernel()
             code = json.loads(self.request.body)["code"]
             msg_id = self.kernel.execute(code)
             # print(msg_id)
@@ -40,7 +42,7 @@ class KernelHandler(BaseHandler, KernelMixin):
                     # print(msg)
                 except Empty:
                     # print('Empty')
-                    pass
+                    break
                     # This indicates that something bad happened, as AFAIK this should return...
                     # self.log.error("Timeout waiting for execute reply")
                     # raise KnitpyException("Timeout waiting for execute reply.")

@@ -61,6 +61,7 @@ angular.module('oide.nbterm')
         cell.output = data.res[1].text;
         cell.running = false;
         cell.hasExecuted = true;
+        kernelStatus = 'idle';
       });
     },
     openNotebook: function(filepath) {
