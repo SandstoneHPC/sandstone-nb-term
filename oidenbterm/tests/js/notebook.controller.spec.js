@@ -42,6 +42,27 @@ describe('bashnotebook', function(){
       expect(scope.ctrl.nbFile.filename).toBe('Untitled');
       expect(scope.ctrl.unsaved).not.toBeTruthy();
     });
+
+    it('should start a kernel', function(){
+      var element = angular.element('<div oide-filetree tree-data="ctrl.treeData" leaf-level="file" selection-desc="ctrl.sd"></div>');
+      el = $compile(element)(scope);
+      scope.$digest();
+      // create spy on notebook service method
+      spyOn(nbService, 'startKernel');
+      scope.ctrl.startKernel();
+      expect(nbService.startKernel).toHaveBeenCalled();
+    });
+
+    it('should stop a kernel', function(){
+      var element = angular.element('<div oide-filetree tree-data="ctrl.treeData" leaf-level="file" selection-desc="ctrl.sd"></div>');
+      el = $compile(element)(scope);
+      scope.$digest();
+      // create spy on stop kernel
+      spyOn(nbService, 'stopKernel');
+      scope.ctrl.stopKernel();
+      expect(nbService.stopKernel).toHaveBeenCalled();      
+    });
+
   });
 
 });
