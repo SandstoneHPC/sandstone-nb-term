@@ -23,6 +23,10 @@ describe('NotebookService', function(){
       }
     });
 
+    httpBackend.whenGET(/\/nbterm\/a\/notebook\?filepath=.*/).respond(function(){
+      return [200, {cells: [{input: 'ls'}, {input: 'pwd'}, {input: 'ls -lrt'}]}];
+    });
+
   }));
 
   describe('NotebookService tests', function(){
@@ -49,6 +53,12 @@ describe('NotebookService', function(){
       expect(cell.hasExecuted).toBeTruthy();
       expect(cell.running).not.toBeTruthy();
       expect(cell.output).toBe('[a.txt b.txt c.txt]');
+    });
+    it('should open a notebook', function(){
+      var filepath = "/home/user/test.ipynb";
+      nbService.openNotebook(filepath);
+      httpBackend.flush();
+      expect(nbService.cellsObj.cells.length).toBe(3);
     });
   });
 
