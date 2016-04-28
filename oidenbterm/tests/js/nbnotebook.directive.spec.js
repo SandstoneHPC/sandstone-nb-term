@@ -26,9 +26,15 @@ describe('nbNotebook directive', function(){
 
   describe('notebook tests', function(){
     it('directive should be initialized', function(){
+      // Expect cells to be defined
       expect(isolateScope).toBeDefined();
+      // Expect cells array length to be 1
       expect(isolateScope.cells.length).toBe(1);
+      // Expect the kernel name to bash
       expect(isolateScope.kernelName).toBe("bash");
+      // Expect runQueue to be defined
+      expect(isolateScope.runQueue).toBeDefined();
+      expect(isolateScope.runQueue.length).toBe(0);
     });
 
     it('should insert a cell above', function(){
@@ -77,6 +83,26 @@ describe('nbNotebook directive', function(){
       expect(isolateScope.cells.length).toBe(1);
       // The cell should not be present in cells array
       expect(isolateScope.cells.indexOf(cell)).toBe(-1);
+    });
+
+    it('should be able to run a cell', function(){
+      var cell = isolateScope.cells[0];
+      isolateScope.runCell(cell);
+      // expect statements
+      expect(cell.hasExecuted).not.toBeTruthy();
+      expect(cell.running).toBeTruthy();
+      expect(cell.showOutput).toBeTruthy();
+      expect(isolateScope.runQueue.length).toBe(1);
+    });
+    it('should be able to run all the cells above', function(){
+      var cell = isolateScope.cells[0];
+      isolateScope.insertCellBelow(cell);
+      isolateScope.insertCellBelow(cell);
+      isolateScope.insertCellAbove(cell);
+      isolateScope.insertCellAbove(cell);
+      isolateScope.runAllCellsAbove(isolateScope.cells[4]);
+      // Expect runqueue to have 4 cells
+      expect(isolateScope.runQueue.length).toBe(4);
     });
   });
 
