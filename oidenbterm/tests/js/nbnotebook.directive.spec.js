@@ -52,6 +52,32 @@ describe('nbNotebook directive', function(){
       // Expect new index and old index to be the same
       expect(newIndex).toBe(oldIndex);
     });
+
+    it('should delete a cell when there is only one cell', function(){
+      var cell = isolateScope.cells[0];
+      isolateScope.deleteCell(cell);
+      expect(isolateScope.cells.length).toBe(0);
+    });
+
+    it('should delete a cell when there is more than one cell, and inserted below', function(){
+      var cell = isolateScope.cells[0];
+      isolateScope.insertCellBelow(cell);
+      isolateScope.deleteCell(cell);
+      // Cell count should be 1
+      expect(isolateScope.cells.length).toBe(1);
+      // The cell should not be present in cells array
+      expect(isolateScope.cells.indexOf(cell)).toBe(-1);
+    });
+
+    it('should delete a cell when there is more than one cell, and inserted above', function(){
+      var cell = isolateScope.cells[0];
+      isolateScope.insertCellAbove(cell);
+      isolateScope.deleteCell(cell);
+      // Cell count should be 1
+      expect(isolateScope.cells.length).toBe(1);
+      // The cell should not be present in cells array
+      expect(isolateScope.cells.indexOf(cell)).toBe(-1);
+    });
   });
 
 });
