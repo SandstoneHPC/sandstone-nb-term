@@ -25,9 +25,32 @@ describe('nbNotebook directive', function(){
   }));
 
   describe('notebook tests', function(){
-    it('$cells should be defined and have length 1', function(){
+    it('directive should be initialized', function(){
       expect(isolateScope).toBeDefined();
       expect(isolateScope.cells.length).toBe(1);
+      expect(isolateScope.kernelName).toBe("bash");
+    });
+
+    it('should insert a cell above', function(){
+      var cell = isolateScope.cells[0];
+      var oldIndex = isolateScope.cells.indexOf(cell);
+      isolateScope.insertCellAbove(cell);
+      var newIndex = isolateScope.cells.indexOf(cell);
+      // Expect length of cells array to be 2
+      expect(isolateScope.cells.length).toBe(2);
+      // Expect new index to be 1 more than old index
+      expect(newIndex).toBe(oldIndex + 1);
+    });
+
+    it('should insert a cell below', function(){
+      var cell = isolateScope.cells[0];
+      var oldIndex = isolateScope.cells.indexOf(cell);
+      isolateScope.insertCellBelow(cell);
+      var newIndex = isolateScope.cells.indexOf(cell);
+      // Expect length of cells to be 2
+      expect(isolateScope.cells.length).toBe(2);
+      // Expect new index and old index to be the same
+      expect(newIndex).toBe(oldIndex);
     });
   });
 
