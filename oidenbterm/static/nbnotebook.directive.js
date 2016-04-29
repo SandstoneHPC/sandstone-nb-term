@@ -85,6 +85,13 @@ angular.module('oide.nbterm')
         };
       };
 
+      if(!$scope.cells) {
+        $scope.cells = [];
+      }
+      if(!$scope.runQueue) {
+        $scope.runQueue = [];
+      }
+
       if ($scope.cells.length===0) {
         var firstCell = createNewCell('code');
         $scope.cells.push(firstCell);
