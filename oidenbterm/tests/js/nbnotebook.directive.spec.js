@@ -104,6 +104,14 @@ describe('nbNotebook directive', function(){
       // Expect runqueue to have 4 cells
       expect(isolateScope.runQueue.length).toBe(4);
     });
+    it('should create a new cell when the length of cells array becomes zero', function(){
+      var cell = isolateScope.cells[0];
+      isolateScope.deleteCell(cell);
+      expect(isolateScope.cells.length).toBe(0);
+      isolateScope.$digest();
+      // It should create a new cell
+      expect(isolateScope.cells.length).toBe(1);
+    });
   });
 
 });
