@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('oide.nbterm')
+angular.module('sandstone.nbterm')
 
 .directive('nbNotebook', [function() {
   return {

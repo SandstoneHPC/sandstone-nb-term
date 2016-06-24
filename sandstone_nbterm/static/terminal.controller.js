@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('oide.nbterm')
+angular.module('sandstone.nbterm')
 
 .controller('TerminalCtrl', ['$window','$log', function($window,$log) {
   var self = this;

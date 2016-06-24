@@ -2,11 +2,11 @@ describe('NotebookService', function(){
   var nbService;
   var httpBackend;
 
-  beforeEach(module('oide'));
-  beforeEach(module('oide.editor'));
-  beforeEach(module('oide.filesystemservice'));
-  beforeEach(module('oide.templates'));
-  beforeEach(module('oide.filetreedirective'));
+  beforeEach(module('sandstone'));
+  beforeEach(module('sandstone.editor'));
+  beforeEach(module('sandstone.filesystemservice'));
+  beforeEach(module('sandstone.templates'));
+  beforeEach(module('sandstone.filetreedirective'));
 
   beforeEach(inject(function(NotebookService, $httpBackend){
     nbService = NotebookService;

@@ -5,11 +5,11 @@ describe('nbNotebook directive', function(){
   var httpBackend;
   var isolateScope;
 
-  beforeEach(module('oide'));
-  beforeEach(module('oide.editor'));
-  beforeEach(module('oide.templates'));
-  beforeEach(module('oide.nbterm'));
-  beforeEach(module('oide.filesystemservice'));
+  beforeEach(module('sandstone'));
+  beforeEach(module('sandstone.editor'));
+  beforeEach(module('sandstone.templates'));
+  beforeEach(module('sandstone.nbterm'));
+  beforeEach(module('sandstone.filesystemservice'));
   // beforeEach(module('/static/nbterm/templates/notebook.html'));
 
   beforeEach(inject(function($rootScope, $compile, $httpBackend){

@@ -3,19 +3,19 @@ from distutils.core import setup
 from setuptools import find_packages
 
 setup(
-    name='oide-nb-term',
+    name='sandstone-nb-term',
     version='0.1.1',
     author=u'Zebula Sampedro',
     author_email='sampedro@colorado.edu',
     packages=find_packages(),
     include_package_data=True,
-    url='https://github.com/ResearchComputing/oide-nb-term',
+    url='https://github.com/SandstoneHPC/sandstone-nb-term',
     license='MIT, see LICENSE',
-    description="Online Integrated Development Environment (OIDE) - NBTerm",
+    description="Sandstone HPC - NBTerm",
     long_description=open('DESCRIPTION.rst').read(),
     zip_safe=False,
     install_requires=[
-        'oide',
+        'sandstone',
         'jupyter',
         'bash_kernel',
     ],

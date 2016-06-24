@@ -1,7 +1,7 @@
 from terminado import SingleTermManager
-from oidenbterm.handlers import AuthTermSocket
-from oidenbterm.handlers import KernelHandler
-from oidenbterm.handlers import NotebookHandler
+from sandstone_nbterm.handlers import AuthTermSocket
+from sandstone_nbterm.handlers import KernelHandler
+from sandstone_nbterm.handlers import NotebookHandler
 
 
 term_manager = SingleTermManager(shell_command=['bash'])

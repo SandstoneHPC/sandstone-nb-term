@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('oide.nbterm')
+angular.module('sandstone.nbterm')
 
 .controller('NotebookCtrl', ['$scope','$log','$modal','NotebookService',function($scope,$log,$modal,NotebookService) {
   var self = this;

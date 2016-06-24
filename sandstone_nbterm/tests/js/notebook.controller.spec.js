@@ -5,11 +5,11 @@ describe('bashnotebook', function(){
   var $compile;
   var nbService;
 
-  beforeEach(module('oide'));
-  beforeEach(module('oide.editor'));
-  beforeEach(module('oide.filesystemservice'));
-  beforeEach(module('oide.templates'));
-  beforeEach(module('oide.filetreedirective'));
+  beforeEach(module('sandstone'));
+  beforeEach(module('sandstone.editor'));
+  beforeEach(module('sandstone.filesystemservice'));
+  beforeEach(module('sandstone.templates'));
+  beforeEach(module('sandstone.filetreedirective'));
 
   beforeEach(inject(function($controller, $rootScope, $log, $document, $httpBackend, _$compile_, $modal, NotebookService){
     scope = $rootScope.$new();
@@ -33,7 +33,7 @@ describe('bashnotebook', function(){
 
   describe('Notebook Controller', function(){
     it('should initialize the directive properly', function(){
-      var element = angular.element('<div oide-filetree tree-data="ctrl.treeData" leaf-level="file" selection-desc="ctrl.sd"></div>');
+      var element = angular.element('<div sandstone-filetree tree-data="ctrl.treeData" leaf-level="file" selection-desc="ctrl.sd"></div>');
       el = $compile(element)(scope);
       scope.$digest();
       expect(scope.ctrl.cellsObj).toBeDefined();
@@ -44,7 +44,7 @@ describe('bashnotebook', function(){
     });
 
     it('should start a kernel', function(){
-      var element = angular.element('<div oide-filetree tree-data="ctrl.treeData" leaf-level="file" selection-desc="ctrl.sd"></div>');
+      var element = angular.element('<div sandstone-filetree tree-data="ctrl.treeData" leaf-level="file" selection-desc="ctrl.sd"></div>');
       el = $compile(element)(scope);
       scope.$digest();
       // create spy on notebook service method
@@ -54,13 +54,13 @@ describe('bashnotebook', function(){
     });
 
     it('should stop a kernel', function(){
-      var element = angular.element('<div oide-filetree tree-data="ctrl.treeData" leaf-level="file" selection-desc="ctrl.sd"></div>');
+      var element = angular.element('<div sandstone-filetree tree-data="ctrl.treeData" leaf-level="file" selection-desc="ctrl.sd"></div>');
       el = $compile(element)(scope);
       scope.$digest();
       // create spy on stop kernel
       spyOn(nbService, 'stopKernel');
       scope.ctrl.stopKernel();
-      expect(nbService.stopKernel).toHaveBeenCalled();      
+      expect(nbService.stopKernel).toHaveBeenCalled();
     });
 
   });

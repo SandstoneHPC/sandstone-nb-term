@@ -1,7 +1,6 @@
 import tornado.web
-import oide.settings as global_settings
-import oidenbterm.settings as app_settings
 import jupyter_client
+from sandstone import settings
 
 class KernelMixin(tornado.web.RequestHandler):
     def initialize(self, kernel_name='python2'):

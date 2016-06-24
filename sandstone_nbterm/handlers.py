@@ -1,8 +1,7 @@
-import oide.lib.decorators
-import oide.settings as global_settings
-import oide.apps.filebrowser.settings as app_settings
-from oide.lib.handlers.base import BaseHandler
-from oidenbterm.mixins.kernel_mixin import KernelMixin
+import sandstone.lib.decorators
+from sandstone import settings
+from sandstone.lib.handlers.base import BaseHandler
+from sandstone_nbterm.mixins.kernel_mixin import KernelMixin
 from terminado import TermSocket
 from traitlets import Integer
 import json
@@ -12,12 +11,12 @@ import nbformat
 
 class AuthTermSocket(TermSocket,BaseHandler):
 
-    @oide.lib.decorators.authenticated
+    @sandstone.lib.decorators.authenticated
     def get(self, *args, **kwargs):
         return super(AuthTermSocket, self).get(*args, **kwargs)
 
 class KernelHandler(BaseHandler, KernelMixin):
-    @oide.lib.decorators.authenticated
+    @sandstone.lib.decorators.authenticated
     def post(self):
         body = json.loads(self.request.body)
         operation = body["operation"]
@@ -118,7 +117,7 @@ class KernelHandler(BaseHandler, KernelMixin):
 
 class NotebookHandler(BaseHandler):
 
-    @oide.lib.decorators.authenticated
+    @sandstone.lib.decorators.authenticated
     def get(self, *args, **kwargs):
         # Given a filepath for a notebook, return formatted
         # cell contents.
@@ -148,7 +147,7 @@ class NotebookHandler(BaseHandler):
 
         self.write({'cells':cells})
 
-    @oide.lib.decorators.authenticated
+    @sandstone.lib.decorators.authenticated
     def post(self, *args, **kwargs):
         # Given a list of nb cells, save to ipynb format v4
         filepath = self.get_argument('filepath')

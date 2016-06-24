@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('oide.nbterm', ['ui.ace','hc.marked'])
+angular.module('sandstone.nbterm', ['ui.ace','hc.marked'])
 
 .config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider) {
   $stateProvider
