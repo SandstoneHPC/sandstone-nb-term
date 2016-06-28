@@ -5,9 +5,12 @@ from sandstone_nbterm.mixins.kernel_mixin import KernelMixin
 from terminado import TermSocket
 from traitlets import Integer
 import json
+import re
 import tornado.web
 import jupyter_client
 import nbformat
+
+
 
 class AuthTermSocket(TermSocket,BaseHandler):
 
@@ -88,6 +91,12 @@ class KernelHandler(BaseHandler, KernelMixin):
                 # Here we have some message which corresponds to our code execution
                 msg_type = msg['msg_type']
                 content = msg['content']
+
+                if 'text' in content:
+                    # Strip ANSI escape characters from output.
+                    ansi_escape = re.compile(r'\x1b[^m]*m')
+                    fmtd = ansi_escape.sub('', content['text'])
+                    content['text'] = fmtd
 
                 # print('Out')
 
