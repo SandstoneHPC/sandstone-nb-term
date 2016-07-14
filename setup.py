@@ -4,7 +4,7 @@ from setuptools import find_packages
 
 setup(
     name='sandstone-nb-term',
-    version='0.1.2',
+    version='0.2.2',
     author=u'Zebula Sampedro',
     author_email='sampedro@colorado.edu',
     packages=find_packages(),
