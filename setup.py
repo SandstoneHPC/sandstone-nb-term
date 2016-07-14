@@ -4,7 +4,7 @@ from setuptools import find_packages
 
 setup(
     name='sandstone-nb-term',
-    version='0.1.1',
+    version='0.1.2',
     author=u'Zebula Sampedro',
     author_email='sampedro@colorado.edu',
     packages=find_packages(),
@@ -15,7 +15,7 @@ setup(
     long_description=open('DESCRIPTION.rst').read(),
     zip_safe=False,
     install_requires=[
-        'sandstone',
+        'sandstone==0.12.5',
         'jupyter',
         'bash_kernel',
     ],
