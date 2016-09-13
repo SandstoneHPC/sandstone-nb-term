@@ -25,7 +25,7 @@ class KernelHandler(BaseHandler, KernelMixin):
         operation = body["operation"]
 
         if operation == "START_KERNEL":
-            self.start_kernel()
+            # self.start_kernel()
             self.write({'res': 'kernel_started'})
         if operation == "SHUTDOWN_KERNEL":
             self.shutdown_kernel()
