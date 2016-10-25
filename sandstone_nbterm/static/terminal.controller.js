@@ -53,5 +53,5 @@ angular.module('sandstone.nbterm')
   }
   var size = calculate_size();
   var terminal = make_terminal(document.getElementById("terminal-pane"), size, ws_url);
-  $window.onbeforeunload = function (term) { term.destroy() };
+  // $window.onbeforeunload = function (term) { term.destroy() };
 }]);

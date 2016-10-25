@@ -160,7 +160,8 @@ class NotebookHandler(BaseHandler):
     def post(self, *args, **kwargs):
         # Given a list of nb cells, save to ipynb format v4
         filepath = self.get_argument('filepath')
-        filepath = '{}.ipynb'.format(filepath)
+        if filepath[-6:] != '.ipynb':
+            filepath = '{}.ipynb'.format(filepath)
         cells = json.loads(self.request.body)['cells']
 
         nb_cells = []
