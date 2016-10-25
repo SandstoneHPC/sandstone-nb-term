@@ -141,7 +141,7 @@ class NotebookHandler(BaseHandler):
             tmp_cell['type'] = cell.get('cell_type')
             tmp_cell['input'] = ''.join(cell.get('source', ''))
             try:
-                if len(cell['outputs'][0]['text']) > 0:
+                if (len(cell['outputs']) > 0) and (len(cell['outputs'][0]['text']) > 0):
                     tmp_cell['output'] = ''.join(cell['outputs'][0]['text'])
                     tmp_cell['hasExecuted'] = True
                     tmp_cell['showOutput'] = True
@@ -150,7 +150,7 @@ class NotebookHandler(BaseHandler):
             except KeyError:
                 pass
             if cell['cell_type'] == 'markdown':
-                tmp_cell['editing'] = false
+                tmp_cell['editing'] = False
                 tmp_cell['hasExecuted'] = True
             cells.append(tmp_cell)
 
