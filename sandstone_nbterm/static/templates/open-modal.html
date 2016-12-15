@@ -7,13 +7,13 @@
       <div class="form-group form-group-sm">
         <label class="col-sm-3 control-label">File Name</label>
         <div class="col-sm-6">
-          <input class="form-control" type="text" ng-model="loadFile.filename" disabled>
+          <input data-telemetry-id="nb-open-modal-filename" class="form-control" type="text" ng-model="loadFile.filename" disabled>
         </div>
       </div>
       <div class="form-group form-group-sm">
         <label class="col-sm-3 control-label">Directory</label>
         <div class="col-sm-6">
-          <input class="form-control" type="text" ng-model="loadFile.filepath" disabled>
+          <input data-telemetry-id="nb-open-modal-filepath" class="form-control" type="text" ng-model="loadFile.filepath" disabled>
         </div>
       </div>
     </form>
@@ -26,8 +26,9 @@
   <button
     class="btn btn-success"
     ng-click="loadScript()"
-    ng-disabled="invalidFilepath">
+    ng-disabled="invalidFilepath"
+    data-telemetry-id="nb-open-modal-load-script">
     Open Notebook
   </button>
-  <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+  <button data-telemetry-id="nb-notebook-cancel" class="btn btn-warning" ng-click="cancel()">Cancel</button>
 </div>

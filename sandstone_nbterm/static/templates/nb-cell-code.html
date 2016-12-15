@@ -2,7 +2,8 @@
   class="panel nb-panel"
   ng-class="{'nb-panel-executed':cell.showOutput,'nb-panel-active':cell.isActive}"
   ng-click="setActive(cell)"
-  ng-init="cell.showOutput=cell.showOutput||false">
+  ng-init="cell.showOutput=cell.showOutput||false"
+  data-telemetry-id="nb-cell-code-set-active">
   <div class="row">
     <div class="col-md-1 col-sm-2 hidden-xs">
       <h5 class="text-right nb-in-label">In [{{$index}}]:</h5>
@@ -45,7 +46,8 @@
             class="btn btn-default"
             tooltip-placement="top"
             tooltip="Run All Cells Above"
-            ng-click="runAllCellsAbove(cell)">
+            ng-click="runAllCellsAbove(cell)"
+            data-telemetry-id="nb-cell-code-run-all-above">
             <i class="fa fa-forward"></i>
           </button>
           <button
@@ -54,18 +56,19 @@
             tooltip-placement="top"
             tooltip="Run Cell"
             ng-disabled="cell.input==''"
-            ng-click="cell.showOutput=true;runCell(cell)">
+            ng-click="cell.showOutput=true;runCell(cell)"
+            data-telemetry-id="nb-cell-code-run-cell">
             <i class="fa fa-play"></i>
           </button>
           <div class="btn-group btn-group-sm" dropdown>
-            <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
+            <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle data-telemetry-id="nb-cell-code-more">
               More
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-              <li><a href ng-click="insertCellAbove(cell)">Insert Cell Above</a></li>
-              <li><a href ng-click="insertCellBelow(cell)">Insert Cell Below</a></li>
-              <li><a href ng-click="deleteCell(cell)">Delete Cell</a></li>
+              <li><a href ng-click="insertCellAbove(cell)" data-telemetry-id="nb-cell-code-insert-cell-above">Insert Cell Above</a></li>
+              <li><a href ng-click="insertCellBelow(cell)" data-telemetry-id="nb-cell-code-insert-cell-below">Insert Cell Below</a></li>
+              <li><a href ng-click="deleteCell(cell)" data-telemetry-id="nb-cell-code-delete-cell">Delete Cell</a></li>
             </ul>
           </div>
         </div>
@@ -73,7 +76,8 @@
           <select
             class="form-control input-sm"
             ng-options="type.id as type.name for type in cellTypes"
-            ng-model="cell.type">
+            ng-model="cell.type"
+            data-telemetry-id="nb-cell-code-type">
           </select>
         </div>
       </form>

@@ -7,13 +7,13 @@
       <div class="form-group form-group-sm">
         <label class="col-sm-3 control-label">File Name</label>
         <div class="col-sm-6">
-          <input class="form-control" type="text" ng-model="newFile.filename">
+          <input data-telemetry-id="nb-saveas-modal-filename" class="form-control" type="text" ng-model="newFile.filename">
         </div>
       </div>
       <div class="form-group form-group-sm">
         <label class="col-sm-3 control-label">Save Directory</label>
         <div class="col-sm-6">
-          <input class="form-control" type="text" ng-model="newFile.filepath" ng-disabled="true">
+          <input data-telemetry-id="nb-saveas-modal-filepath" class="form-control" type="text" ng-model="newFile.filepath" ng-disabled="true">
           <!-- <span class="modal-body-message">{{newFilePath}}{{newFileName}}</span> -->
         </div>
       </div>
@@ -29,8 +29,9 @@
   <button
     class="btn btn-success"
     ng-click="saveAs()"
-    ng-disabled="invalidFilepath">
+    ng-disabled="invalidFilepath"
+    data-telemetry-id="nb-saveas-modal-save-as">
     Save File As
   </button>
-  <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+  <button data-telemetry-id="nb-saveas-modal-cancel" class="btn btn-warning" ng-click="cancel()">Cancel</button>
 </div>

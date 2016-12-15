@@ -7,7 +7,8 @@
           class="btn btn-default"
           tooltip-placement="bottom"
           tooltip="New Notebook"
-          ng-click="ctrl.newNotebook()">
+          ng-click="ctrl.newNotebook()"
+          data-telemetry-id="nb-notebook-new-notebook">
           <i class="fa fa-file-text-o nb-action"></i>
         </button>
         <button
@@ -15,7 +16,8 @@
           class="btn btn-default"
           tooltip-placement="bottom"
           tooltip="Open Notebook"
-          ng-click="ctrl.openNotebook()">
+          ng-click="ctrl.openNotebook()"
+          data-telemetry-id="nb-notebook-open-notebook">
           <i class="fa fa-folder-open-o nb-action"></i>
         </button>
         <button
@@ -23,7 +25,8 @@
           class="btn btn-default"
           tooltip-placement="bottom"
           tooltip="Save Notebook"
-          ng-click="ctrl.saveNotebook()">
+          ng-click="ctrl.saveNotebook()"
+          data-telemetry-id="nb-notebook-save-notebook">
           <i class="fa fa-floppy-o nb-action"></i>
         </button>
       </div>
@@ -37,7 +40,8 @@
           tooltip-placement="bottom"
           tooltip="Stop Kernel"
           ng-click="ctrl.stopKernel()"
-          disabled>
+          disabled
+          data-telemetry-id="nb-notebook-stop-kernel">
           <i class="fa fa-stop nb-action"></i>
         </button>
       </div>
@@ -52,7 +56,8 @@
           tooltip-placement="bottom"
           tooltip="Start Kernel"
           ng-click="ctrl.startKernel()"
-          disabled>
+          disabled
+          data-telemetry-id="nb-notebook-start-kernel">
           <i class="fa fa-play nb-action"></i>
         </button>
       </div>

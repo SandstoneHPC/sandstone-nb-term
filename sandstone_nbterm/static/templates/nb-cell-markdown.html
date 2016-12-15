@@ -2,7 +2,8 @@
   class="panel nb-panel nb-panel-markdown"
   ng-class="{'nb-panel-executed':cell.editing,'nb-panel-active':cell.isActive}"
   ng-click="setActive(cell)"
-  ng-init="cell.editing=!cell.hasExecuted">
+  ng-init="cell.editing=!cell.hasExecuted"
+  data-telemetry-id="nb-cell-markdown-set-active">
   <div class="row">
     <div
       class="col-md-1 col-sm-2 hidden-xs"
@@ -35,7 +36,8 @@
             class="btn btn-default"
             tooltip-placement="top"
             tooltip="Run All Cells Above"
-            ng-click="runAllCellsAbove(cell)">
+            ng-click="runAllCellsAbove(cell)"
+            data-telemetry-id="nb-cell-markdown-run-all-above">
             <i class="fa fa-forward"></i>
           </button>
           <button
@@ -43,18 +45,19 @@
             class="btn btn-default"
             tooltip-placement="top"
             tooltip="Run Cell"
-            ng-click="runCell(cell)">
+            ng-click="runCell(cell)"
+            data-telemetry-id="nb-cell-markdown-run-cell">
             <i class="fa fa-play"></i>
           </button>
           <div class="btn-group btn-group-sm" dropdown>
-            <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
+            <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle data-telemetry-id="nb-cell-markdown-more">
               More
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-              <li><a href ng-click="insertCellAbove(cell)">Insert Cell Above</a></li>
-              <li><a href ng-click="insertCellBelow(cell)">Insert Cell Below</a></li>
-              <li><a href ng-click="deleteCell(cell)">Delete Cell</a></li>
+              <li><a href ng-click="insertCellAbove(cell)" data-telemetry-id="nb-cell-markdown-insert-above">Insert Cell Above</a></li>
+              <li><a href ng-click="insertCellBelow(cell)" data-telemetry-id="nb-cell-markdown-insert-cell-below">Insert Cell Below</a></li>
+              <li><a href ng-click="deleteCell(cell)" data-telemetry-id="nb-cell-markdown-delete-cell">Delete Cell</a></li>
             </ul>
           </div>
         </div>
@@ -62,7 +65,8 @@
           <select
             class="form-control input-sm"
             ng-options="type.id as type.name for type in cellTypes"
-            ng-model="cell.type">
+            ng-model="cell.type"
+            data-telemetry-id="nb-cell-markdown-type">
           </select>
         </div>
       </form>
@@ -80,7 +84,8 @@
         class="pull-right"
         tooltip-placement="left"
         tooltip="Edit Cell"
-        ng-click="cell.editing=!cell.editing;cell.hasExecuted=false">
+        ng-click="cell.editing=!cell.editing;cell.hasExecuted=false"
+        data-telemetry-id="nb-cell-markdown-edit-cell">
         <i class="fa fa-pencil"></i>
       </span>
     </div>
