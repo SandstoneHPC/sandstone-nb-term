@@ -30,7 +30,7 @@ script:
     - unzip master.zip
     - cd sandstone-ide-master
     - export SANDSTONE_PATH=$(pwd)
-    - export PATH_FILE=/home/travis/virtualenv/python2.7.10/lib/python2.7/site-packages/sandstone.pth
+    - export PATH_FILE=/home/travis/virtualenv/python2.7.12/lib/python2.7/site-packages/sandstone.pth
     - echo $(pwd) > $PATH_FILE
     - pip install -r requirements.txt
     - cd sandstone/client
