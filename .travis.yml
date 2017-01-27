@@ -3,7 +3,7 @@ dist: trusty
 
 language: python
 python:
-    - "2.7"
+    - "2.7.12"
 
 notifications:
     slack: rmacc:XuJOFyi7wxFivfqbHS6KDMSw
