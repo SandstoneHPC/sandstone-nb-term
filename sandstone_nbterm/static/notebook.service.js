@@ -20,9 +20,6 @@ angular.module('sandstone.nbterm')
         method: 'POST',
         data: {
           operation: 'START_KERNEL'
-        },
-        params: {
-          _xsrf: getCookie('_xsrf')
         }
       }).success(function(data){
         $log.log(data);
@@ -35,9 +32,6 @@ angular.module('sandstone.nbterm')
         method: 'POST',
         data: {
           operation: 'SHUTDOWN_KERNEL'
-        },
-        params: {
-          _xsrf: getCookie('_xsrf')
         }
       }).success(function(data){
         $log.log(data);
@@ -52,9 +46,6 @@ angular.module('sandstone.nbterm')
         data: {
           code: cell.input,
           operation: 'EXECUTE_CODE'
-        },
-        params: {
-          _xsrf: getCookie('_xsrf')
         }
       }).success(function(data){
         $log.log(data);
@@ -69,7 +60,6 @@ angular.module('sandstone.nbterm')
         url: '/nbterm/a/notebook',
         method: 'GET',
         params: {
-          _xsrf: getCookie('_xsrf'),
           filepath: filepath
         }
       }).success(function(data) {
@@ -88,7 +78,6 @@ angular.module('sandstone.nbterm')
           cells: cells
         },
         params: {
-          _xsrf: getCookie('_xsrf'),
           filepath: filepath
         }
       }).success(function(data){
